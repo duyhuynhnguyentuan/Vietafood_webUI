@@ -5,6 +5,8 @@ import { Navbar } from "../../components/navbar";
 import { SwipperBanner } from "./swipperBanner";
 import { Marginer } from "../../components/marginer";
 import {TopSection} from "./topSection"; // Ensure the correct import for TopSection
+import { ProductSection } from "./productSection";
+import { Footer } from "../../components/footer";
 
 const PageContainer = styled.div`
    ${tw`
@@ -23,8 +25,9 @@ export function Homepage() {
       <SwipperBanner />
       <Marginer margin="3em" direction="vertical" />
       <TopSection />
-      <Marginer margin="4em" direction="vertical" />
-      
+      <ProductSection/>
+      <Marginer margin="3em" direction="vertical"/>
+      <Footer/>
     </PageContainer>
   );
 }
