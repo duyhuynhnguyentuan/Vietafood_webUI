@@ -10,7 +10,6 @@ import fruit1 from '../../../assets/fruit1.png';
 import fruit2 from '../../../assets/fruit2.jpg';
 import fruit3 from '../../../assets/fruit3.jpg';
 import { Button } from "../../components/button";
-import "./index.css";
 
 const BannerContainer = styled.div`
   ${tw`
@@ -19,6 +18,32 @@ const BannerContainer = styled.div`
     flex 
     flex-row
   `}
+`;
+
+const StyledSwiper = styled(Swiper)`
+  width: 100%;
+  height: 100%;
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #E5BC69;
+  }
 `;
 
 const slides = [
@@ -45,7 +70,7 @@ const slides = [
 export function SwipperBanner() {
   return (
     <BannerContainer>
-      <Swiper
+      <StyledSwiper
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
@@ -55,15 +80,13 @@ export function SwipperBanner() {
         pagination={{
           clickable: true,
         }}
-        navigation={
-         true
-        }
+        navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
         {slides.map((slide, index) => (
           <SwiperSlide >
-             <div className="relative w-[100vw] h-[300px] md:h-[500px]">
+            <div className="relative w-[100vw] h-[300px] md:h-[500px]">
               <img
                 src={slide.imageUrl}
                 alt={`Slide ${index + 1}`}
@@ -79,7 +102,7 @@ export function SwipperBanner() {
             </div>
           </SwiperSlide>
         ))}
-      </Swiper>
+      </StyledSwiper>
     </BannerContainer>
   );
 }

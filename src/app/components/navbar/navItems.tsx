@@ -9,7 +9,8 @@ import Badge, { BadgeProps } from '@mui/material/Badge';
 
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { CustomizedBadges } from "c:/Users/duycuto/Documents/Coding/FPTU/Vietafood_WebUI/src/app/components/navbar/cartButton/index"
+import { CustomizedBadges } from "./cartButton";
+
 
  const ListContainer = styled.ul`
     ${tw`
@@ -35,9 +36,10 @@ const NavItem = styled.li<{menu?: any}>`
     menu &&
     css`
       ${tw`
+      font-bold
       text-[white]
-      text-xl
-      mb-3
+      text-3xl
+      mb-8
       
     `};
     `};
@@ -51,7 +53,7 @@ const NavItem = styled.li<{menu?: any}>`
             <a href="/">Trang chủ</a>
         </NavItem>
         <NavItem menu>
-            <a href="#">VietaFood Store</a>
+            <a href="#">Chúng tôi</a>
         </NavItem>
         <NavItem menu>
             <a href="#">Sản phẩm</a>
@@ -69,7 +71,7 @@ const NavItem = styled.li<{menu?: any}>`
             <a href="/">Trang chủ</a>
         </NavItem>
         <NavItem>
-            <a href="#">VietaFood Store</a>
+            <a href="#">Chúng tôi</a>
         </NavItem>
         <NavItem>
             <a href="/products">Sản phẩm</a>
