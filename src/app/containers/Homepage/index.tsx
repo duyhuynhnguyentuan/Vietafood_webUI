@@ -1,7 +1,6 @@
-import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
-import { Navbar } from "../../components/navbar";
+
 import { SwipperBanner } from "./swipperBanner";
 import { Marginer } from "../../components/marginer";
 import {TopSection} from "./topSection"; // Ensure the correct import for TopSection
