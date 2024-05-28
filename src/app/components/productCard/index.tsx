@@ -50,17 +50,9 @@ const FlexContainer = styled.div`
 
 const ProductCard: React.FC<IProductProps> = (props) => {
   const {
-    productId,
     name,
-    category,
     price,
-    quantityInStock,
-    description,
-    guideToUsing,
     weight,
-    expiryDay,
-    discount,
-    dateCreated,
     imageURL,
     isTopProduct = false,
   } = props;

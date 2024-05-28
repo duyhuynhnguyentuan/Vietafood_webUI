@@ -4,10 +4,6 @@ import {stack as Menu} from "react-burger-menu";
 import { useMediaQuery } from "react-responsive";
 import { SCREENS } from "../responsive";
 import menuStyles from "./menuStyle";
-import Badge, { BadgeProps } from '@mui/material/Badge';
-
-import IconButton from '@mui/material/IconButton';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { CustomizedBadges } from "./cartButton";
 
 

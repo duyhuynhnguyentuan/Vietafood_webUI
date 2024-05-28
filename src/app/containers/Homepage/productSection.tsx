@@ -58,7 +58,7 @@ export function ProductSection(){
       };
     
       const topProducts = [testProduct, testProduct2, testProduct, testProduct2, testProduct, testProduct2];
-      const isEmptyTopProducts = !topProducts || topProducts.length === 0;
+    //   const isEmptyTopProducts = !topProducts || topProducts.length === 0;
       let products: JSX.Element[] = [];
       const Allproducts = topProducts;
       products = Allproducts.map((product) => (
