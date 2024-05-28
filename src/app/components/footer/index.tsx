@@ -6,7 +6,6 @@ import { Facebook, Instagram, MailOutline, Phone, Room } from "@mui/icons-materi
 const Container = styled.div`
   display: flex;
   ${tw`
-  max-w-screen-2xl
   flex-col
   md:flex-row
   bg-primary
@@ -95,11 +94,11 @@ export function Footer() {
         </ContactItem>
         <ContactItem>
           <Phone style={{ marginRight: "10px" }} />
-          <a href="tel:0858731831">0858 731 831</a>
+          <a href="tel:0858731831" style={{ textDecoration: 'underline' }}>0858 731 831</a>
         </ContactItem>
         <ContactItem>
           <MailOutline style={{ marginRight: "10px" }} />
-          <a href="mailto:andyhntd2003@gmail.com">andyhntd2003@gmail.com</a>
+          <a href="mailto:andyhntd2003@gmail.com" style={{ textDecoration: 'underline' }}>andyhntd2003@gmail.com</a>
         </ContactItem>
       </Right>
     </Container>
