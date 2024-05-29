@@ -2,6 +2,7 @@ import styled from "styled-components";
 import tw from "twin.macro";
 import ProductCard from "../../components/productCard";
 import { IProduct } from "../../../../types/product";
+import { Reveal } from "../../components/animation/Reveal";
 
 
 const PageContainer = styled.div`
@@ -62,7 +63,9 @@ export function ProductSection(){
       let products: JSX.Element[] = [];
       const Allproducts = topProducts;
       products = Allproducts.map((product) => (
+        <Reveal>
           <ProductCard isTopProduct={false} {...product} />
+        </Reveal>
       ));
       return(
     <PageContainer>
@@ -71,6 +74,7 @@ export function ProductSection(){
             <ProductContainer>
                 {products}
             </ProductContainer>
+              
         </SectionContainer>
     </PageContainer>)
 }

@@ -13,6 +13,7 @@ import ProductCard from '../../components/productCard';
 import './index.css';
 import Fire from '../../../assets/Fire.json';
 import Lottie from 'lottie-react';
+import { Reveal } from '../../components/animation/Reveal';
 
 const HeadingContainer = styled.div`
   ${tw`flex items-center justify-center`}
@@ -173,6 +174,7 @@ export function TopSection() {
         </LottieWrapper>
       </HeadingContainer>
       {!isEmptyTopProducts && (
+        <Reveal width='100%'>
         <StyledSwiper
           effect={'coverflow'}
           grabCursor={true}
@@ -203,6 +205,7 @@ export function TopSection() {
             <div className="swiper-pagination"></div>
           </div>
         </StyledSwiper>
+      </Reveal> 
       )}
     </Container>
   );
