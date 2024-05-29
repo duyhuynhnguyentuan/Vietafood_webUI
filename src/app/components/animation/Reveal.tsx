@@ -4,9 +4,10 @@ import { useEffect, useRef } from "react";
 interface Props {
     children: JSX.Element;
     width?: "fit-content" | "100%";
+    overflow?: "hidden" | "";
 }
 
-export const Reveal = ({ children, width = "fit-content" }: Props) => {
+export const Reveal = ({ children, width = "fit-content", overflow ="" }: Props) => {
     const ref = useRef<HTMLDivElement>(null);
     const isInView = useInView(ref, { once: true });
     const mainControls = useAnimation();
@@ -19,7 +20,7 @@ export const Reveal = ({ children, width = "fit-content" }: Props) => {
     }, [isInView, mainControls]);
 
     return (
-        <div ref={ref} style={{ position: "relative", width, overflow: "hidden" }}>
+        <div ref={ref} style={{ position: "relative", width, overflow }}>
             <motion.div
                 variants={{
                     hidden: { opacity: 0, y: 75 },

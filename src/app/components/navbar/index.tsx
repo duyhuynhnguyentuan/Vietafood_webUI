@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import tw from "twin.macro";
 
-const NavbarContainer = styled.div`
+const NavbarContainer = styled.div<{ showBackground: boolean }>`
  min-height: 68px;
  ${tw`
+    fixed
     w-full 
     max-w-screen-2xl
     flex 
@@ -11,12 +12,16 @@ const NavbarContainer = styled.div`
     items-center
     md:px-10 
     justify-between
-    bg-primary
+    transition 
+    duration-150
+    z-50
  `}
+  ${({ showBackground }) => (showBackground ? tw`bg-secondary` : tw``)}
 `
 
 import logoImg from "../../../assets/logo.png"
 import { NavItems } from "./navItems";
+import { useEffect, useState } from "react";
 
 const LogoContainer = styled.div`
  ${tw`
@@ -40,7 +45,23 @@ img {
 
 
 export function Navbar(){
-    return <NavbarContainer>
+  const TOP_OFFSET = 66;
+  const [showBackground, setShowBackground] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY >= TOP_OFFSET) {
+        setShowBackground(true);
+      } else {
+        setShowBackground(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+    window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+    return <NavbarContainer showBackground={showBackground}>
         {/* Logo part */}
         <LogoContainer>
             <Image>

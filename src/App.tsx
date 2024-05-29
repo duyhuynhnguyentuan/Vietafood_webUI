@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import tw from 'twin.macro'
 import { Homepage } from './app/containers/Homepage'
 import { Navbar } from './app/components/navbar';
+import { Footer } from './app/components/footer';
 
 const AppContainer = styled.div`
 ${tw`
@@ -13,6 +14,7 @@ ${tw`
 `;
 const PageContainer = styled.div`
   ${tw`
+
     flex
     flex-col
     h-full
@@ -24,12 +26,12 @@ const PageContainer = styled.div`
 
 function App() {
   return(
-  <AppContainer>
+    <AppContainer>
     <PageContainer>
     <Navbar/>
     <Homepage />
+    <Footer/>
     </PageContainer>
-   
   </AppContainer>
 );
 }

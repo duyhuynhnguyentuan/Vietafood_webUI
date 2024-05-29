@@ -9,7 +9,7 @@ const PageContainer = styled.div`
 ${tw` w-full max-w-screen-2xl flex flex-col`}
 `
 const SectionContainer = styled.div`
-    ${tw`mx-10`}
+    ${tw` mx-10`}
 `
 
 const Title = styled.p`
@@ -18,10 +18,10 @@ const Title = styled.p`
     `}
 `
 const ProductContainer = styled.div`
-    ${tw`
-        grid grid-cols-1 justify-items-center gap-y-6 md:grid-cols-3 md:gap-x-10 md:gap-y-12
-    `}
-`
+  ${tw`
+    grid grid-cols-1 gap-y-6 md:grid-cols-2 lg:grid-cols-3 justify-items-center md:gap-x-6 lg:gap-x-8 md:gap-y-10 lg:gap-y-12 
+  `}
+`;
 
 export function ProductSection(){
     const testProduct: IProduct = {

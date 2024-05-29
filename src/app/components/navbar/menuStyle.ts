@@ -7,7 +7,7 @@ export default {
       top: "20px",
     },
     bmBurgerBars: {
-      background: "#373a47",
+      background: "#e8e2c9",
     },
     bmBurgerBarsHover: {
       background: "#a90000",
