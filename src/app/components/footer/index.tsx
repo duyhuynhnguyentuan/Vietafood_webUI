@@ -6,6 +6,7 @@ import { Facebook, Instagram, MailOutline, Phone, Room } from "@mui/icons-materi
 const Container = styled.div`
   display: flex;
   ${tw`
+  max-w-screen-2xl
   flex-col
   md:flex-row
   bg-primary

@@ -1,9 +1,16 @@
 import styled from "styled-components";
 import tw from "twin.macro";
+import { useEffect, useState } from "react";
+import logoImg from "../../../assets/logo.png";
+import { NavItems } from "./navItems";
+
+interface INavBarProps {
+  isshowBackground?: boolean;
+}
 
 const NavbarContainer = styled.div<{ showBackground: boolean }>`
- min-height: 68px;
- ${tw`
+  height: 68px;
+  ${tw`
     fixed
     w-full 
     max-w-screen-2xl
@@ -15,40 +22,40 @@ const NavbarContainer = styled.div<{ showBackground: boolean }>`
     transition 
     duration-150
     z-50
- `}
+  `}
   ${({ showBackground }) => (showBackground ? tw`bg-secondary` : tw``)}
-`
-
-import logoImg from "../../../assets/logo.png"
-import { NavItems } from "./navItems";
-import { useEffect, useState } from "react";
+`;
 
 const LogoContainer = styled.div`
- ${tw`
+  ${tw`
     flex
     items-center
- `}
+  `}
 `;
+
 const Image = styled.div`
-width: auto;
-${
-    tw`
+  width: auto;
+  ${tw`
     h-12
     md:h-16
-    `
-}
-img {
+  `}
+  img {
     width: auto;
     height: 100%;
-}
+  }
 `;
 
+export const Navbar: React.FC<INavBarProps> = (props) => {
+  const { isshowBackground = false } = props;
 
-export function Navbar(){
   const TOP_OFFSET = 66;
-  const [showBackground, setShowBackground] = useState(false);
+  const [showBackground, setShowBackground] = useState(isshowBackground);
 
   useEffect(() => {
+    if (isshowBackground) {
+      return;
+    }
+    
     const handleScroll = () => {
       if (window.scrollY >= TOP_OFFSET) {
         setShowBackground(true);
@@ -56,18 +63,22 @@ export function Navbar(){
         setShowBackground(false);
       }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener("scroll", handleScroll);
     return () => {
-    window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
-    return <NavbarContainer showBackground={showBackground}>
-        {/* Logo part */}
-        <LogoContainer>
-            <Image>
-                <img src={logoImg} alt="logo" />
-            </Image>
-        </LogoContainer>
-        <NavItems/>
+  }, [isshowBackground]);
+
+  return (
+    <NavbarContainer showBackground={showBackground}>
+      {/* Logo part */}
+      <LogoContainer>
+        <Image>
+          <img src={logoImg} alt="logo" />
+        </Image>
+      </LogoContainer>
+      <NavItems />
     </NavbarContainer>
-}
+  );
+};
