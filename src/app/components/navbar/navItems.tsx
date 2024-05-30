@@ -48,7 +48,7 @@ const NavItem = styled.li<{menu?: any}>`
             <a href="/">Trang chủ</a>
         </NavItem>
         <NavItem menu>
-            <a href="/about">Chúng tôi</a>
+            <a href="/aboutUs">Chúng tôi</a>
         </NavItem>
         <NavItem menu>
             <a href="/products">Sản phẩm</a>
@@ -66,7 +66,7 @@ const NavItem = styled.li<{menu?: any}>`
             <a href="/">Trang chủ</a>
         </NavItem>
         <NavItem>
-            <a href="/about">Chúng tôi</a>
+            <a href="/aboutUs">Chúng tôi</a>
         </NavItem>
         <NavItem>
             <a href="/products">Sản phẩm</a>
