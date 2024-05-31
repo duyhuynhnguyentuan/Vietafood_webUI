@@ -61,7 +61,7 @@ const slides = [
   {
     imageUrl: fruit3,
     text: "Hãy bấm mua ngay",
-    buttonText: "đặt mua ngay",
+    buttonText: "Đặt mua ngay",
     externalUrl: "https://shopee.vn/-E-voucher-D%E1%BB%8Bch-v%E1%BB%A5-D%E1%BB%8Bch-v%E1%BB%A5-ph%C3%A1t-h%C3%A0nh-th%E1%BA%BB-MB-Hi-Visa-Collection-B%E1%BB%99-s%C6%B0u-t%E1%BA%ADp-ACE-Ph%C3%A1t-S%C3%A1ng-i.867040476.21189355634?publish_id=&sp_atk=3e53dc84-de21-47a6-a8ed-dcaeb9ff4a80&xptdk=3e53dc84-de21-47a6-a8ed-dcaeb9ff4a80"
   },
 ];
@@ -93,7 +93,7 @@ export function SwipperBanner() {
               />
               <div className="absolute inset-0 bg-black opacity-70"></div>
               <div className="absolute inset-0 flex flex-col items-center justify-center p-8 flex-wrap text-white text-center">
-                <h1 className="mb-4 text-3xl md:text-5xl lg:text-6xl font-bold drop-shadow-xl">
+                <h1 className="mb-4 text-3xl md:text-5xl font-bold drop-shadow-xl">
                   {slide.text}
                 </h1>
                 <Button text={slide.buttonText} externalUrl={slide.externalUrl} />
