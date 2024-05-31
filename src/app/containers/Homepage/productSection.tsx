@@ -3,7 +3,8 @@ import tw from "twin.macro";
 import ProductCard from "../../components/productCard";
 import { IProduct } from "../../../../types/product";
 import { Reveal } from "../../components/animation/Reveal";
-
+import mit from '../../../assets/mit.png';
+import thom from '../../../assets/thom.png';
 
 const PageContainer = styled.div`
 ${tw` w-full max-w-screen-2xl flex flex-col`}
@@ -38,7 +39,7 @@ export function ProductSection(){
         expiryDay: '6 tháng ngày sản xuất',
         discount: 50,
         dateCreated: '2023-09-02',
-        imageURL: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30',
+        imageURL: thom,
       };
     
       const testProduct2: IProduct = {
@@ -55,7 +56,7 @@ export function ProductSection(){
         expiryDay: '6 tháng ngày sản xuất',
         discount: 50,
         dateCreated: '2023-09-02',
-        imageURL: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30',
+        imageURL: mit,
       };
     
       const topProducts = [testProduct, testProduct2, testProduct, testProduct2, testProduct, testProduct2];

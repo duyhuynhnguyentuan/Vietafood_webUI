@@ -10,6 +10,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        'transparentBlack':'#969696',
         'primary': '#E5BC69',
         'secondary': '#F8bc7c',
         'tertiary': '#9fa57c',

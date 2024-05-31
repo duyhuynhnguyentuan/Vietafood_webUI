@@ -14,6 +14,8 @@ import './index.css';
 import Fire from '../../../assets/Fire.json';
 import Lottie from 'lottie-react';
 import { Reveal } from '../../components/animation/Reveal';
+import mit from '../../../assets/mit.png';
+import thom from '../../../assets/thom.png';
 
 const HeadingContainer = styled.div`
   ${tw`flex items-center justify-center`}
@@ -133,7 +135,7 @@ export function TopSection() {
     expiryDay: '6 tháng ngày sản xuất',
     discount: 50,
     dateCreated: '2023-09-02',
-    imageURL: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30',
+    imageURL: thom,
   };
 
   const testProduct2: IProduct = {
@@ -150,7 +152,7 @@ export function TopSection() {
     expiryDay: '6 tháng ngày sản xuất',
     discount: 50,
     dateCreated: '2023-09-02',
-    imageURL: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30',
+    imageURL: mit,
   };
 
   const topProducts = [testProduct, testProduct2, testProduct, testProduct2, testProduct, testProduct2];
@@ -196,7 +198,7 @@ export function TopSection() {
         >
           {productSlides}
           <div className="slider-controler">
-            <div className="swiper-button-prev slider-arrow">
+            <div className=" swiper-button-prev slider-arrow">
               <ArrowCircleLeftOutlinedIcon className="ion-icon" fontSize="large" />
             </div>
             <div className="swiper-button-next slider-arrow">
