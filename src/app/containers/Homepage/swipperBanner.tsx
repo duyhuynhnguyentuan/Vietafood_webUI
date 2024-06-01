@@ -50,7 +50,7 @@ const slides = [
     imageUrl: fruit1,
     text: "Các sản phẩm của Vietafood đã có mặt trên nền tảng Shopee!",
     buttonText: "Đến trang của Shopee",
-    externalUrl: 'https://l.facebook.com/l.php?u=https%3A%2F%2Fvn.shp.ee%2FqBYV3vu%3Ffbclid%3DIwZXh0bgNhZW0CMTAAAR2FXDCN2RnH5Z1pvGYXEMMmx4oJ1SMZgP_qi9t1AbhmQdTX-M7FA4SdFU4_aem_AaYU_IVvcwKOaL6pLGz5wTAZUdQ_e65W-UWJ4MMGLfVUPNqwxbfRtO87BBFmuJ49r0Yiqnwe-Am5XgGvQ35eAr1w&h=AT3U_8D2H9CzL9mYy-rgYpq8Ry-9HAtOXIZ2bum5yzLvfcjQ3TLTEfKyl0cjnW790WWmcpkOCsuFEZc-btSzrFbfTmN8V-V5TKbMXb-_dDxVVemoVL5xmWlZRMPdWLEg0_hymwthZw'
+    externalUrl: 'https://vn.shp.ee/ChacKa9'
   },
   {
     imageUrl: fruit2,
