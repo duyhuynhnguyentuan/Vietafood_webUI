@@ -33,7 +33,7 @@ const NavItem = styled.li<{menu?: any}>`
       ${tw`
       font-bold
       text-[white]
-      text-3xl
+      text-lg
       mb-8
       
     `};
@@ -54,7 +54,7 @@ const NavItem = styled.li<{menu?: any}>`
             <a href="/products">Sản phẩm</a>
         </NavItem>
          <NavItem menu>
-            <a href="#">Mua hàng online</a>
+            <a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fvn.shp.ee%2FqBYV3vu%3Ffbclid%3DIwZXh0bgNhZW0CMTAAAR2FXDCN2RnH5Z1pvGYXEMMmx4oJ1SMZgP_qi9t1AbhmQdTX-M7FA4SdFU4_aem_AaYU_IVvcwKOaL6pLGz5wTAZUdQ_e65W-UWJ4MMGLfVUPNqwxbfRtO87BBFmuJ49r0Yiqnwe-Am5XgGvQ35eAr1w&h=AT3U_8D2H9CzL9mYy-rgYpq8Ry-9HAtOXIZ2bum5yzLvfcjQ3TLTEfKyl0cjnW790WWmcpkOCsuFEZc-btSzrFbfTmN8V-V5TKbMXb-_dDxVVemoVL5xmWlZRMPdWLEg0_hymwthZw">Mua trên Shopee</a>
         </NavItem>
         <CustomizedBadges/>
     </ListContainer>
@@ -72,7 +72,7 @@ const NavItem = styled.li<{menu?: any}>`
             <a href="/products">Sản phẩm</a>
         </NavItem>
          <NavItem>
-            <a href="#">Mua hàng online</a>
+            <a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fvn.shp.ee%2FqBYV3vu%3Ffbclid%3DIwZXh0bgNhZW0CMTAAAR2FXDCN2RnH5Z1pvGYXEMMmx4oJ1SMZgP_qi9t1AbhmQdTX-M7FA4SdFU4_aem_AaYU_IVvcwKOaL6pLGz5wTAZUdQ_e65W-UWJ4MMGLfVUPNqwxbfRtO87BBFmuJ49r0Yiqnwe-Am5XgGvQ35eAr1w&h=AT3U_8D2H9CzL9mYy-rgYpq8Ry-9HAtOXIZ2bum5yzLvfcjQ3TLTEfKyl0cjnW790WWmcpkOCsuFEZc-btSzrFbfTmN8V-V5TKbMXb-_dDxVVemoVL5xmWlZRMPdWLEg0_hymwthZw">Mua trên Shopee</a>
         </NavItem>
         <CustomizedBadges/>
     </ListContainer>

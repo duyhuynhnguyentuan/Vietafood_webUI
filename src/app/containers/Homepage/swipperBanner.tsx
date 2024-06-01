@@ -50,7 +50,7 @@ const slides = [
     imageUrl: fruit1,
     text: "Các sản phẩm của Vietafood đã có mặt trên nền tảng Shopee!",
     buttonText: "Đến trang của Shopee",
-    externalUrl: 'https://shopee.vn/-E-voucher-D%E1%BB%8Bch-v%E1%BB%A5-D%E1%BB%8Bch-v%E1%BB%A5-ph%C3%A1t-h%C3%A0nh-th%E1%BA%BB-MB-Hi-Visa-Collection-B%E1%BB%99-s%C6%B0u-t%E1%BA%ADp-ACE-Ph%C3%A1t-S%C3%A1ng-i.867040476.21189355634?publish_id=&sp_atk=3e53dc84-de21-47a6-a8ed-dcaeb9ff4a80&xptdk=3e53dc84-de21-47a6-a8ed-dcaeb9ff4a80'
+    externalUrl: 'https://l.facebook.com/l.php?u=https%3A%2F%2Fvn.shp.ee%2FqBYV3vu%3Ffbclid%3DIwZXh0bgNhZW0CMTAAAR2FXDCN2RnH5Z1pvGYXEMMmx4oJ1SMZgP_qi9t1AbhmQdTX-M7FA4SdFU4_aem_AaYU_IVvcwKOaL6pLGz5wTAZUdQ_e65W-UWJ4MMGLfVUPNqwxbfRtO87BBFmuJ49r0Yiqnwe-Am5XgGvQ35eAr1w&h=AT3U_8D2H9CzL9mYy-rgYpq8Ry-9HAtOXIZ2bum5yzLvfcjQ3TLTEfKyl0cjnW790WWmcpkOCsuFEZc-btSzrFbfTmN8V-V5TKbMXb-_dDxVVemoVL5xmWlZRMPdWLEg0_hymwthZw'
   },
   {
     imageUrl: fruit2,
