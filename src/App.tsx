@@ -38,6 +38,7 @@ const App: React.FC<AppProps> = ({ content, isshowBackground }) => {
         <Navbar isshowBackground={isshowBackground} />
         {content}
         <Footer />
+        
       </PageContainer>
     </AppContainer>
   );
