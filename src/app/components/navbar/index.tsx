@@ -3,6 +3,9 @@ import tw from "twin.macro";
 import { useEffect, useState } from "react";
 import logoImg from "../../../assets/logo.png";
 import { NavItems } from "./navItems";
+import { SearchBar } from "../searchBar";
+import { useMediaQuery } from "react-responsive";
+import { SCREENS } from "../responsive";
 
 interface INavBarProps {
   isshowBackground?: boolean;
@@ -69,7 +72,7 @@ export const Navbar: React.FC<INavBarProps> = (props) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [isshowBackground]);
-
+  const isMobile = useMediaQuery({ maxWidth: SCREENS.md });
   return (
     <NavbarContainer showBackground={showBackground}>
       {/* Logo part */}
@@ -78,6 +81,7 @@ export const Navbar: React.FC<INavBarProps> = (props) => {
           <img src={logoImg} alt="logo" />
         </Image>
       </LogoContainer>
+      {!isMobile? <SearchBar/>: ""}
       <NavItems />
     </NavbarContainer>
   );

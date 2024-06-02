@@ -6,12 +6,13 @@ import { IProduct } from "../../../../types/product";
 import mit from '../../../assets/mit.png';
 import thom from '../../../assets/thom.png';
 import { Reveal } from "../../components/animation/Reveal";
+import { CategoryFilter } from "../../components/categoryFilter/categoryFilter";
 const ProductSectionContainer = styled.div`
   ${tw`
     w-full 
     max-w-screen-2xl
     flex 
-    flex-row
+    flex-col
   `}
 `;
 
@@ -20,7 +21,15 @@ const ProductCardContainer = styled.section`
   w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-28 mt-10 mb-5
   `}
 `
+const Heading = styled.h1`
+  ${tw`p-2 md:p-4 text-4xl md:text-5xl font-black text-primary`}
+`;
 
+const HeaderContainer = styled.section`
+     ${tw`
+   flex flex-col  items-center md:flex-row md:mx-[10rem] md:justify-between
+  `}
+  `
 
 export function ProductSection(){
   const testProduct: IProduct = {
@@ -61,6 +70,10 @@ export function ProductSection(){
 
     return(
         <ProductSectionContainer>
+          <HeaderContainer>
+            <Heading>SẢN PHẨM</Heading>
+            <CategoryFilter/>
+          </HeaderContainer>
           <ProductCardContainer>
           {products.map((product) => {
             return (

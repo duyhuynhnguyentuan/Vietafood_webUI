@@ -17,7 +17,7 @@ const PageContainer = styled.div`
 export function ProductsPage(){
     return(
         <PageContainer>
-            <Marginer margin="4em" direction="vertical" />
+            <Marginer margin="2em" direction="vertical" />
             <ProductSection/>
             <Marginer margin="4em" direction="vertical" />
         </PageContainer>

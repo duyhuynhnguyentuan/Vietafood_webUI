@@ -5,6 +5,7 @@ import { useMediaQuery } from "react-responsive";
 import { SCREENS } from "../responsive";
 import menuStyles from "./menuStyle";
 import { CustomizedBadges } from "./cartButton";
+import { SearchBar } from "../searchBar";
 
 
  const ListContainer = styled.ul`
@@ -43,6 +44,9 @@ const NavItem = styled.li<{menu?: any}>`
     const isMobile = useMediaQuery({ maxWidth: SCREENS.md });
     if (isMobile)
         return <Menu right styles={menuStyles}>
+        <NavItem menu>
+        <SearchBar/>
+        </NavItem>
             <ListContainer>
         <NavItem menu>
             <a href="/">Trang chủ</a>
