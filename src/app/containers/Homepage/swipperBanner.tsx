@@ -9,6 +9,8 @@ import fruit1 from '../../../assets/fruit1.png';
 import fruit2 from '../../../assets/fruit2.jpg';
 import fruit3 from '../../../assets/fruit3.jpg';
 import { Button } from "../../components/button";
+import { useMediaQuery } from "react-responsive";
+import { SCREENS } from "../../components/responsive";
 
 const BannerContainer = styled.div`
   ${tw`
@@ -41,32 +43,36 @@ const StyledSwiper = styled(Swiper)`
 
   .swiper-button-next,
   .swiper-button-prev {
-    color: #E5BC69;
+    visibility: hidden;
   }
 `;
 
 const slides = [
   {
     imageUrl: fruit1,
-    text: "Các sản phẩm của Vietafood đã có mặt trên nền tảng Shopee!",
+    text: "Các sản phẩm của Vietafood đã có mặt ",
     buttonText: "Đến trang của Shopee",
-    externalUrl: 'https://vn.shp.ee/ChacKa9'
+    externalUrl: 'https://vn.shp.ee/ChacKa9',
+    text2: "trên nền tảng Shopee!"
   },
   {
     imageUrl: fruit2,
-    text: "Trái cây tốt cho sức khỏe giá tốt tại Vietafood",
+    text: "Trái cây tốt cho sức khỏe giá tốt tại Vietafood!",
     buttonText: "Hãy mua ngay",
-    externalUrl: '/products'
+    externalUrl: '/products',
+    text2: ''
   },
   {
     imageUrl: fruit3,
-    text: "Hãy bấm mua ngay",
-    buttonText: "Đặt mua ngay",
-    externalUrl: "https://shopee.vn/-E-voucher-D%E1%BB%8Bch-v%E1%BB%A5-D%E1%BB%8Bch-v%E1%BB%A5-ph%C3%A1t-h%C3%A0nh-th%E1%BA%BB-MB-Hi-Visa-Collection-B%E1%BB%99-s%C6%B0u-t%E1%BA%ADp-ACE-Ph%C3%A1t-S%C3%A1ng-i.867040476.21189355634?publish_id=&sp_atk=3e53dc84-de21-47a6-a8ed-dcaeb9ff4a80&xptdk=3e53dc84-de21-47a6-a8ed-dcaeb9ff4a80"
+    text: "VietaFood ra đời vào năm 2023 với sứ mệnh tạo ra",
+    buttonText: "Về chúng tôi",
+    externalUrl: "/aboutUs",
+    text2: " những sản phẩm trái cây sấy dẻo tinh khiết!"
   },
 ];
 
 export function SwipperBanner() {
+  const isMobile = useMediaQuery({ maxWidth: SCREENS.md });
   return (
     <BannerContainer>
       <StyledSwiper
@@ -93,9 +99,19 @@ export function SwipperBanner() {
               />
               <div className="absolute inset-0 bg-black opacity-70"></div>
               <div className="absolute inset-0 flex flex-col items-center justify-center p-8 flex-wrap text-white text-center">
-                <h1 className="mb-4 text-3xl md:text-5xl font-bold drop-shadow-xl">
+                {isMobile ?  <h1 className="text-md md:text-5xl font-bold drop-shadow-xl md:max-w-screen-xl">
+                  {slide.text}{slide.text2}
+                </h1> :  
+                <div>
+
+                <h1 className="text-md md:text-5xl font-bold drop-shadow-xl md:max-w-screen-xl">
                   {slide.text}
                 </h1>
+                <h1 className="mb-4 text-md md:text-5xl font-bold drop-shadow-xl md:max-w-screen-xl">
+                  {slide.text2}
+                </h1>
+                </div>
+                }
                 <Button text={slide.buttonText} externalUrl={slide.externalUrl} />
               </div>
             </div>
