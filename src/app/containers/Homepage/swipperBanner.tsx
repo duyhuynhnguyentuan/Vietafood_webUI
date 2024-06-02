@@ -85,7 +85,7 @@ export function SwipperBanner() {
       >
         {slides.map((slide, index) => (
           <SwiperSlide>
-            <div className="relative w-[100vw] h-[400px] md:h-[500px]">
+            <div className="relative w-[100vw] h-[300px] md:h-[500px]">
               <img
                 src={slide.imageUrl}
                 alt={`Slide ${index + 1}`}

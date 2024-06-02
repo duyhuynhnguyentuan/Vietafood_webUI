@@ -20,6 +20,7 @@ const NavbarContainer = styled.div<{ showBackground: boolean }>`
     flex 
     flex-row
     items-center
+    
     md:px-10 
     justify-between
     transition 
@@ -33,6 +34,7 @@ const LogoContainer = styled.div`
   ${tw`
     flex
     items-center
+  
   `}
 `;
 
@@ -41,6 +43,8 @@ const Image = styled.div`
   ${tw`
     h-12
     md:h-16
+    mx-4
+    md:mx-0
   `}
   img {
     width: auto;
