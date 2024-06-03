@@ -3,7 +3,8 @@ import Badge, { BadgeProps } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-
+import { useDispatch } from 'react-redux';
+import { open } from '../../State/Slice/CheckOutSlice';
 
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
@@ -16,9 +17,10 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 }));
 
 export function CustomizedBadges(){
+  const dispatch = useDispatch()
   return (
-    <IconButton aria-label="cart">
-      <StyledBadge badgeContent={4} color="primary">
+    <IconButton aria-label="cart" onClick={()=> dispatch(open())}>
+      <StyledBadge badgeContent={1} color="primary">
         <ShoppingCartIcon style={{ color: '#fff' }} />
       </StyledBadge>
     </IconButton>

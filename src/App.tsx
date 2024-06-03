@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { Navbar } from './app/components/navbar';
 import { Footer } from './app/components/footer';
+import { Cart } from './app/containers/Cart';
+import { useSelector } from 'react-redux';
+import { RootState } from './app/store';
 
 
 // Define the props type for the App component
@@ -32,13 +35,16 @@ const PageContainer = styled.div`
 `;
 
 const App: React.FC<AppProps> = ({ content, isshowBackground }) => {
+  const {isOpen} = useSelector((state:RootState) => state.checkout)
   return (
     <AppContainer>
       <PageContainer>
+        {isOpen && 
+         <Cart/>
+        }
         <Navbar isshowBackground={isshowBackground} />
         {content}
         <Footer />
-        
       </PageContainer>
     </AppContainer>
   );

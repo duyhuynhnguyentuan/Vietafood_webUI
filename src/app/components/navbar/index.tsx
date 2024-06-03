@@ -25,7 +25,7 @@ const NavbarContainer = styled.div<{ showBackground: boolean }>`
     justify-between
     transition 
     duration-150
-    z-50
+    z-20
   `}
   ${({ showBackground }) => (showBackground ? tw`bg-secondary` : tw``)}
 `;

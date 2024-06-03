@@ -13,7 +13,6 @@ export const Reveal = ({ children, width = "fit-content", overflow ="" }: Props)
     const mainControls = useAnimation();
     
     useEffect(() => {
-        console.log("isInView:", isInView);  // Log isInView to verify if it's changing
         if (isInView) {
             mainControls.start("visible");
             
