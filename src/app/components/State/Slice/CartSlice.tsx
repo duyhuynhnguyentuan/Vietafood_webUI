@@ -8,7 +8,8 @@ const CartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
-       add:(state,action)=>{
+        //nho add action
+       add:(state)=>{
         state.amount = state.amount + 1;
 
        } 
