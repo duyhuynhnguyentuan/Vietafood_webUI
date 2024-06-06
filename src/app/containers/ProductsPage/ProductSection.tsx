@@ -49,7 +49,7 @@ export function ProductSection() {
     const isSortDesc = queryParams.get('isSortDesc');
 
     // Construct the API URL with query parameters if they are present
-    let apiUrl = 'http://www.vietafood.somee.com/api/product';
+    let apiUrl = 'https://vietafoodtrial.somee.com/api/product';
     const params = [];
 
     if (productName) {
