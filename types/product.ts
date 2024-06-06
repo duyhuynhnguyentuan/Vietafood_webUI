@@ -1,14 +1,13 @@
 export interface IProduct {
-    productId: string;
+    productKey: string;
     name: string;
-    category: string;
-    price: number;
-    quantityInStock: number;
     description: string;
     guideToUsing: string;
+    price: number;
     weight: String;
     expiryDay: String;
-    discount: number;
-    dateCreated: String;
-    imageURL: string;
+    imageUrl: string;
+    quantity: number;
+    status: number;
+   
 }

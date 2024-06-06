@@ -4,7 +4,7 @@ export function SearchBar() {
         <div className="relative">
           <input
             type="text"
-            name="search"
+            name="Name"
             className="w-full h-12 shadow p-4 pr-12 rounded-full border-2 border-primary focus:bg-white focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary transition-colors duration-200"
             placeholder="Tìm kiếm"
           />
