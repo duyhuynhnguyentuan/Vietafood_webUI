@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import axios from 'axios';
-import styled from 'styled-components';
-import tw from 'twin.macro';
-import SingleProduct from './SingleProduct';
-import { IProduct } from '../../../../types/product';
-import { Reveal } from '../../components/animation/Reveal';
-import { CategoryFilter } from '../../components/categoryFilter/categoryFilter';
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import styled from "styled-components";
+import tw from "twin.macro";
+import SingleProduct from "./SingleProduct";
+import { IProduct } from "../../../../types/product";
+import { Reveal } from "../../components/animation/Reveal";
+import { CategoryFilter } from "../../components/categoryFilter/categoryFilter";
+import loading from "../../../assets/loading.json";
+import Lottie from "lottie-react";
 
 const ProductSectionContainer = styled.div`
   ${tw`
@@ -16,7 +18,9 @@ const ProductSectionContainer = styled.div`
     flex-col
   `}
 `;
-
+const LoadingContainer = styled.div`
+  ${tw`flex justify-center items-center w-full h-full`}
+`;
 const ProductCardContainer = styled.section`
   ${tw`
     w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-28 mt-10 mb-5
@@ -35,8 +39,9 @@ const HeaderContainer = styled.section`
 
 export function ProductSection() {
   const location = useLocation();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [products, setProducts] = useState<IProduct[]>([]);
-  console.log(products)
+  const [currentFilter, setCurrentFilter] = useState<string>("Tất cả");
   // Function to parse query parameters
   const getQueryParams = () => {
     return new URLSearchParams(location.search);
@@ -44,12 +49,11 @@ export function ProductSection() {
 
   useEffect(() => {
     const queryParams = getQueryParams();
-    const productName = queryParams.get('Name');
-    const sortOption = queryParams.get('SortOption');
-    const isSortDesc = queryParams.get('isSortDesc');
+    const productName = queryParams.get("Name");
+    const sortOption = queryParams.get("SortOption");
+    const isSortDesc = queryParams.get("isSortDesc");
 
-    // Construct the API URL with query parameters if they are present
-    let apiUrl = 'https://vietafoodtrial.somee.com/api/product';
+    let apiUrl = "https://vietafoodtrial.somee.com/api/product";
     const params = [];
 
     if (productName) {
@@ -57,17 +61,24 @@ export function ProductSection() {
     }
     if (sortOption) {
       params.push(`SortOption=${encodeURIComponent(sortOption)}`);
+      setCurrentFilter("A-Z")
     }
     if (isSortDesc !== null) {
       params.push(`isSortDesc=${encodeURIComponent(isSortDesc)}`);
+      if (isSortDesc === 'true') {
+        setCurrentFilter('Giá: Cao đến thấp');
+      } else if (isSortDesc === 'false') {
+        setCurrentFilter('Giá: Thấp đến cao');
+      }
     }
 
     if (params.length > 0) {
-      apiUrl += '?' + params.join('&');
+      apiUrl += "?" + params.join("&");
     }
     console.log(apiUrl);
-    axios.get(apiUrl)
-      .then(response => {
+    axios
+      .get(apiUrl)
+      .then((response) => {
         if (response.data && response.data.data && response.data.data.items) {
           const fetchedProducts = response.data.data.items.map((item: any) => ({
             productKey: item.productKey,
@@ -79,13 +90,16 @@ export function ProductSection() {
             imageUrl: item.imageUrl,
             quantity: item.quantity,
             status: item.status,
-            price: item.price // Assuming price is not in the API response, set it as needed
+            price: item.price,
           }));
           setProducts(fetchedProducts);
         }
       })
-      .catch(error => {
-        console.error('Error fetching products:', error);
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [location.search]);
 
@@ -93,15 +107,21 @@ export function ProductSection() {
     <ProductSectionContainer>
       <HeaderContainer>
         <Heading>SẢN PHẨM</Heading>
-        <CategoryFilter />
+        <CategoryFilter currentFilter={currentFilter} />
       </HeaderContainer>
-      <ProductCardContainer>
-        {products.map((product) => (
-          <Reveal>
-            <SingleProduct {...product} />
-          </Reveal>
-        ))}
-      </ProductCardContainer>
+      {isLoading ? (
+        <LoadingContainer>
+          <Lottie animationData={loading} loop={true} />
+        </LoadingContainer>
+      ) : (
+        <ProductCardContainer>
+          {products.map((product) => (
+            <Reveal>
+              <SingleProduct {...product} />
+            </Reveal>
+          ))}
+        </ProductCardContainer>
+      )}
     </ProductSectionContainer>
   );
 }
