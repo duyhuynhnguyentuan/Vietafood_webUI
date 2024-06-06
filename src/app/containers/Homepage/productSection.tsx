@@ -26,37 +26,33 @@ const ProductContainer = styled.div`
 
 export function ProductSection(){
     const testProduct: IProduct = {
-        productId: '1',
+        productKey: '1',
         name: 'Thơm sấy dẻo, bịch, 250 gram',
-        category: 'Trái cây sấy',
         price: 50000,
-        quantityInStock: 4,
+        quantity: 4,
         description:
           'Thơm (dứa) là một loại trái cây tốt cho sức khỏe được sấy dẻo tự nhiên không đường, chứa nhiều Vitamin và dưỡng chất chống oxy hóa, hỗ trợ sức khỏe tim mạch, hỗ trợ đường tiêu hóa.',
         guideToUsing:
           'Có thể dùng ăn trực tiếp hoặc ngâm trà detox. Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng trực tiếp.',
         weight: '250 gram',
         expiryDay: '6 tháng ngày sản xuất',
-        discount: 50,
-        dateCreated: '2023-09-02',
-        imageURL: thom,
+        imageUrl: thom,
+        status: 1
       };
     
       const testProduct2: IProduct = {
-        productId: '2',
+        productKey: '2',
         name: 'Mit sấy dẻo, bịch, 250 gram',
-        category: 'Trái cây sấy',
         price: 50000,
-        quantityInStock: 4,
+        quantity: 4,
         description:
           'Mit là một loại trái cây tốt cho sức khỏe được sấy dẻo tự nhiên không đường, chứa nhiều Vitamin và dưỡng chất chống oxy hóa, hỗ trợ sức khỏe tim mạch, hỗ trợ đường tiêu hóa.',
         guideToUsing:
           'Có thể dùng ăn trực tiếp hoặc ngâm trà detox. Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng trực tiếp.',
         weight: '250 gram',
         expiryDay: '6 tháng ngày sản xuất',
-        discount: 50,
-        dateCreated: '2023-09-02',
-        imageURL: mit,
+        imageUrl: mit,
+        status: 1
       };
     
       const topProducts = [testProduct, testProduct2, testProduct, testProduct2, testProduct, testProduct2];

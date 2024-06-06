@@ -53,14 +53,14 @@ const ProductCard: React.FC<IProductProps> = (props) => {
     name,
     price,
     weight,
-    imageURL,
+    imageUrl,
     isTopProduct = false,
   } = props;
 
   return (
     <Card isTopProduct={isTopProduct}>
       <ImageContainer>
-        <Image src={imageURL} alt={name} />
+        <Image src={imageUrl} alt={name} />
         {isTopProduct && <SaleBadge>MỚI</SaleBadge>}
       </ImageContainer>
       <Content>
