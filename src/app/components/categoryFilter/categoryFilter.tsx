@@ -28,11 +28,11 @@ export function CategoryFilter({ currentFilter }: CategoryFilterProps) {
         navigate(0)
         break;
       case 'highToLow':
-        navigate('/products?isSortDesc=true');
+        navigate('/products?SortOption=price&isSortDesc=true');
         navigate(0)
         break;
       case 'lowToHigh':
-        navigate('/products?isSortDesc=false');
+        navigate('/products?SortOption=price&isSortDesc=false');
         navigate(0)
         break;
       default:
