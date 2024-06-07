@@ -1,26 +1,29 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
-import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
-import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
-import styled from 'styled-components';
-import tw from 'twin.macro';
-import { IProduct } from '../../../../types/product';
-import ProductCard from '../../components/productCard';
-import './index.css';
-import Fire from '../../../assets/Fire.json';
-import Lottie from 'lottie-react';
-import { Reveal } from '../../components/animation/Reveal';
-import mit from '../../../assets/mit.png';
-import thom from '../../../assets/thom.png';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
+import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
+import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+import styled from "styled-components";
+import tw from "twin.macro";
+import { IProduct } from "../../../../types/product";
+import ProductCard from "../../components/productCard";
+import "./index.css";
+import Fire from "../../../assets/Fire.json";
+import Lottie from "lottie-react";
+import { Reveal } from "../../components/animation/Reveal";
+import loading from "../../../assets/loading.json";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const HeadingContainer = styled.div`
   ${tw`flex items-center justify-center`}
 `;
-
+const LoadingContainer = styled.div`
+  ${tw`flex justify-center items-center w-full h-full`}
+`;
 const Container = styled.div`
   ${tw`w-full max-w-screen-2xl flex flex-col`}
 `;
@@ -96,7 +99,7 @@ const StyledSwiper = styled(Swiper)`
   }
 
   .slider-arrow::after {
-    content: '';
+    content: "";
   }
 
   .swiper-pagination {
@@ -121,47 +124,43 @@ const LottieWrapper = styled.div`
 `;
 
 export function TopSection() {
-  const testProduct: IProduct = {
-    productKey: '1',
-    name: 'Thơm sấy dẻo, bịch, 250 gram',
-    price: 50000,
-    quantity: 4,
-    description:
-      'Thơm (dứa) là một loại trái cây tốt cho sức khỏe được sấy dẻo tự nhiên không đường, chứa nhiều Vitamin và dưỡng chất chống oxy hóa, hỗ trợ sức khỏe tim mạch, hỗ trợ đường tiêu hóa.',
-    guideToUsing:
-      'Có thể dùng ăn trực tiếp hoặc ngâm trà detox. Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng trực tiếp.',
-    weight: '250 gram',
-    expiryDay: '6 tháng ngày sản xuất',
-    imageUrl: thom,
-    status: 1
-  };
+  const [products, setProducts] = useState<IProduct[]>([]);
+  useEffect(() => {
+    let apiUrl = "https://vietafoodtrial.somee.com/api/product?SortOption=price&isSortDesc=true";
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        if (response.data && response.data.data && response.data.data.items) {
+          const fetchedProducts = response.data.data.items.map((item: any) => ({
+            productKey: item.productKey,
+            name: item.name,
+            description: item.description,
+            guideToUsing: item.guildToUsing,
+            weight: item.weight,
+            expiryDay: item.expiryDay,
+            imageUrl: item.imageUrl,
+            quantity: item.quantity,
+            status: item.status,
+            price: item.price,
+          }));
+          setProducts(fetchedProducts);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      })
+    ;
+  });
 
-  const testProduct2: IProduct = {
-    productKey: '2',
-    name: 'Mit sấy dẻo, bịch, 250 gram',
-    price: 50000,
-    quantity: 4,
-    description:
-      'Mit là một loại trái cây tốt cho sức khỏe được sấy dẻo tự nhiên không đường, chứa nhiều Vitamin và dưỡng chất chống oxy hóa, hỗ trợ sức khỏe tim mạch, hỗ trợ đường tiêu hóa.',
-    guideToUsing:
-      'Có thể dùng ăn trực tiếp hoặc ngâm trà detox. Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng trực tiếp.',
-    weight: '250 gram',
-    expiryDay: '6 tháng ngày sản xuất',
-    imageUrl: mit,
-    status: 1
-  };
-
-  const topProducts = [testProduct, testProduct2, testProduct, testProduct2, testProduct, testProduct2];
-  const isEmptyTopProducts = !topProducts || topProducts.length === 0;
+  const isEmptyTopProducts = !products || products.length === 0;
   let productSlides: JSX.Element[] = [];
-  const products = topProducts;
   productSlides = products.map((product) => (
     <SwiperSlide>
       <ProductCard isTopProduct={true} {...product} />
     </SwiperSlide>
   ));
 
-   // Adjust size according to your heading
+  // Adjust size according to your heading
 
   return (
     <Container>
@@ -171,39 +170,49 @@ export function TopSection() {
           <Lottie animationData={Fire} loop={true} />
         </LottieWrapper>
       </HeadingContainer>
-      {!isEmptyTopProducts && (
-        <Reveal width='100%'>
-        <StyledSwiper
-          effect={'coverflow'}
-          grabCursor={true}
-          centeredSlides={true}
-          loop={true}
-          slidesPerView={'auto'}
-          coverflowEffect={{
-            rotate: 0,
-            stretch: 0,
-            depth: 100,
-            modifier: 2.5,
-          }}
-          pagination={{ el: '.swiper-pagination', clickable: true }}
-          navigation={{
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          }}
-          modules={[EffectCoverflow, Pagination, Navigation]}
-        >
-          {productSlides}
-          <div className="slider-controler">
-            <div className=" swiper-button-prev slider-arrow">
-              <ArrowCircleLeftOutlinedIcon className="ion-icon" fontSize="large" />
+      {!isEmptyTopProducts ? (
+        <Reveal width="100%">
+          <StyledSwiper
+            effect={"coverflow"}
+            grabCursor={true}
+            centeredSlides={true}
+            loop={true}
+            slidesPerView={"auto"}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 100,
+              modifier: 2.5,
+            }}
+            pagination={{ el: ".swiper-pagination", clickable: true }}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            }}
+            modules={[EffectCoverflow, Pagination, Navigation]}
+          >
+            {productSlides}
+            <div className="slider-controler">
+              <div className=" swiper-button-prev slider-arrow">
+                <ArrowCircleLeftOutlinedIcon
+                  className="ion-icon"
+                  fontSize="large"
+                />
+              </div>
+              <div className="swiper-button-next slider-arrow">
+                <ArrowCircleRightOutlinedIcon
+                  className="ion-icon"
+                  fontSize="large"
+                />
+              </div>
+              <div className="swiper-pagination"></div>
             </div>
-            <div className="swiper-button-next slider-arrow">
-              <ArrowCircleRightOutlinedIcon className="ion-icon" fontSize="large" />
-            </div>
-            <div className="swiper-pagination"></div>
-          </div>
-        </StyledSwiper>
-      </Reveal> 
+          </StyledSwiper>
+        </Reveal>
+      ) : (
+        <LoadingContainer>
+          <Lottie animationData={loading} loop={true} />
+        </LoadingContainer>
       )}
     </Container>
   );
