@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function SearchBar() {
+interface SearchBarProps {
+  closeMenu?: () => void;
+}
+
+export function SearchBar({ closeMenu }: SearchBarProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
@@ -9,8 +13,9 @@ export function SearchBar() {
     setSearchTerm(e.target.value);
   };
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
+    if (closeMenu) closeMenu();
     navigate(`/products?Name=${searchTerm}`);
   };
 
