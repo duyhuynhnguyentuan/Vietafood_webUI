@@ -13,8 +13,8 @@ export default {
       background: "#a90000",
     },
     bmCrossButton: {
-      height: "24px",
-      width: "24px",
+      height: "50px",
+      width: "50px",
     },
     bmCross: {
       background: "#bdc3c7",

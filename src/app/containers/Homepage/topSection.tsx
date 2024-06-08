@@ -159,7 +159,7 @@ export function TopSection() {
 
   const isEmptyTopProducts = !products || products.length === 0;
   let productSlides: JSX.Element[] = [];
-  productSlides = products.map((product, index) => (
+  productSlides = products.map((product) => (
     <SwiperSlide >
       <ProductCard isTopProduct={true} {...product} />
     </SwiperSlide>
