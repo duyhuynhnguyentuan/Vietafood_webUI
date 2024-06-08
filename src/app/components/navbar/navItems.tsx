@@ -6,6 +6,7 @@ import { SCREENS } from "../responsive";
 import menuStyles from "./menuStyle";
 import { CustomizedBadges } from "./cartButton";
 import { SearchBar } from "../searchBar";
+import { Link } from "react-router-dom";
 
 
  const ListContainer = styled.ul`
@@ -49,13 +50,19 @@ const NavItem = styled.li<{menu?: any}>`
         </NavItem>
             <ListContainer>
         <NavItem menu>
-            <a href="/">Trang chủ</a>
+            <Link to="/">
+                Trang chủ
+            </Link>
         </NavItem>
         <NavItem menu>
-            <a href="/aboutUs">Chúng tôi</a>
+        <Link to="/aboutUs">
+                Chúng tôi
+        </Link>
         </NavItem>
         <NavItem menu>
-            <a href="/products">Sản phẩm</a>
+            <Link to="/products">
+                Sản phẩm
+            </Link>
         </NavItem>
          <NavItem menu>
             <a href="https://vn.shp.ee/ChacKa9">Mua trên Shopee</a>
@@ -67,13 +74,19 @@ const NavItem = styled.li<{menu?: any}>`
     
     return <ListContainer>
         <NavItem>
-            <a href="/">Trang chủ</a>
+        <Link to="/">
+                Trang chủ
+            </Link>
         </NavItem>
         <NavItem>
-            <a href="/aboutUs">Chúng tôi</a>
+        <Link to="/aboutUs">
+                Chúng tôi
+        </Link>
         </NavItem>
         <NavItem>
-            <a href="/products">Sản phẩm</a>
+        <Link to="/products">
+                Sản phẩm
+            </Link>
         </NavItem>
          <NavItem>
             <a href="https://vn.shp.ee/ChacKa9">Mua trên Shopee</a>

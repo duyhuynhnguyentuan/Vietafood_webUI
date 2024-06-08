@@ -6,7 +6,8 @@ import { Footer } from './app/components/footer';
 import { Cart } from './app/containers/Cart';
 import { useSelector } from 'react-redux';
 import { RootState } from './app/store';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Define the props type for the App component
 interface AppProps {
@@ -39,6 +40,7 @@ const App: React.FC<AppProps> = ({ content, isshowBackground }) => {
   return (
     <AppContainer>
       <PageContainer>
+        <ToastContainer />
         {isOpen && 
          <Cart/>
         }

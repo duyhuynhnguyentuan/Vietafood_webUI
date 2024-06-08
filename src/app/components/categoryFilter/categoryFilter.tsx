@@ -21,19 +21,15 @@ export function CategoryFilter({ currentFilter }: CategoryFilterProps) {
     switch (filterOption) {
       case 'all':
         navigate('/products');
-        navigate(0)
         break;
       case 'az':
         navigate('/products?SortOption=name');
-        navigate(0)
         break;
       case 'highToLow':
         navigate('/products?SortOption=price&isSortDesc=true');
-        navigate(0)
         break;
       case 'lowToHigh':
         navigate('/products?SortOption=price&isSortDesc=false');
-        navigate(0)
         break;
       default:
         break;

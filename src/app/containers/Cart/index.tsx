@@ -1,9 +1,12 @@
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { open } from '../../components/State/Slice/CheckOutSlice';
 import {useDispatch} from "react-redux";
+import { useSelector } from'react-redux';
+import { RootState } from '../../store';
 
 export function Cart(){
     const dispatch = useDispatch()
+    const { amount } = useSelector((state: RootState)=> state.cart)
     return(
         <div className="bg-black bg-opacity-70 fixed z-50 top-0 left-0 w-full h-screen">
             <div className="h-full bg-primary sm:w-[40rem] min-w-[15rem] overflow-y-auto">
@@ -15,7 +18,7 @@ export function Cart(){
                             <ArrowBackIosIcon/>
                             <span className="uppercase text-[0.95rem] select-none">Tiếp tục mua hàng</span>
                         </div>
-                     <div>Shopping Bag(0)</div>
+                     <div>Giỏ hàng ({amount})</div>
                     </div>
                 </div>
             </div>

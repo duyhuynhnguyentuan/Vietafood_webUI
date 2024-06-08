@@ -5,7 +5,8 @@ import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useDispatch } from 'react-redux';
 import { open } from '../../State/Slice/CheckOutSlice';
-
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -18,9 +19,10 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 
 export function CustomizedBadges(){
   const dispatch = useDispatch()
+  const { amount }  = useSelector(((state: RootState) => state.cart))
   return (
     <IconButton aria-label="cart" onClick={()=> dispatch(open())}>
-      <StyledBadge badgeContent={1} color="primary">
+      <StyledBadge badgeContent={amount} color="primary">
         <ShoppingCartIcon style={{ color: '#fff' }} />
       </StyledBadge>
     </IconButton>

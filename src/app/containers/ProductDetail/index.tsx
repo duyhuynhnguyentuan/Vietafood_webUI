@@ -9,7 +9,7 @@ import { Marginer } from "../../components/marginer";
 import { Reveal } from "../../components/animation/Reveal";
 import Lottie from "lottie-react";
 import loading from "../../../assets/loading.json";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const LoadingContainer = styled.div`
@@ -38,6 +38,7 @@ const ProductDetailContainer = styled.div`
 
 
 export default function ProductDetail() {
+    
     const { id } = useParams<{ id: string }>(); 
     const [product, setProduct] = useState<IProduct>()
     const navigate = useNavigate();
@@ -65,9 +66,10 @@ export default function ProductDetail() {
           })
           .catch(error => {
             console.error("Error fetching product:", error);
-            toast.error("Không thể tìm thấy sản phẩm, đang quay về trang chủ...");
+            const id = toast.error("Không thể tìm thấy sản phẩm, đang quay về trang chủ...");
             setTimeout(() => {
                 navigate("/")
+                toast.update(id, {render: "Đã quay về Trang chủ", type: "success", isLoading: false});
             }, 3000); //
           });
       }, []);
@@ -87,7 +89,7 @@ export default function ProductDetail() {
             )
                 }
                 <Marginer margin="5em" direction="vertical"/>
-                <ToastContainer/>
+             
             </ProductDetailContainer>
          </PageContainer>
       )
