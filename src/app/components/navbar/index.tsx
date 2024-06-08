@@ -20,7 +20,6 @@ const NavbarContainer = styled.div<{ showBackground: boolean }>`
     flex 
     flex-row
     items-center
-    
     md:px-10 
     justify-between
     transition 
@@ -34,7 +33,6 @@ const LogoContainer = styled.div`
   ${tw`
     flex
     items-center
-  
   `}
 `;
 
@@ -52,17 +50,16 @@ const Image = styled.div`
   }
 `;
 
-export const Navbar: React.FC<INavBarProps> = (props) => {
-  const { isshowBackground = false } = props;
-
+export const Navbar: React.FC<INavBarProps> = ({ isshowBackground = true }) => {
   const TOP_OFFSET = 66;
   const [showBackground, setShowBackground] = useState(isshowBackground);
 
   useEffect(() => {
     if (isshowBackground) {
+      setShowBackground(true);
       return;
     }
-    
+
     const handleScroll = () => {
       if (window.scrollY >= TOP_OFFSET) {
         setShowBackground(true);
@@ -76,16 +73,17 @@ export const Navbar: React.FC<INavBarProps> = (props) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [isshowBackground]);
+
   const isMobile = useMediaQuery({ maxWidth: SCREENS.md });
+
   return (
     <NavbarContainer showBackground={showBackground}>
-      {/* Logo part */}
       <LogoContainer>
         <Image>
           <img src={logoImg} alt="logo" />
         </Image>
       </LogoContainer>
-      {!isMobile? <SearchBar/>: ""}
+      {!isMobile ? <SearchBar /> : null}
       <NavItems />
     </NavbarContainer>
   );
