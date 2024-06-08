@@ -30,7 +30,7 @@ const Content = styled.div`
 `;
 
 const Title = styled.h3`
-  ${tw`text-lg font-medium mb-2`}
+  ${tw`text-lg text-primary font-extrabold mb-2`}
 `;
 
 const Description = styled.p`
