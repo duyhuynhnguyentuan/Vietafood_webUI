@@ -48,9 +48,6 @@ export function CategoryFilter({ currentFilter }: CategoryFilterProps) {
         </button>
         {isOpen && (
           <div className="absolute z-[99] top-[100%] left-[50%] translate-x-[-50%] rounded-md overflow-hidden shadow-lg min-w-[200px] w-max opacity-100 duration-200 p-1 bg-gray-100 dark:bg-gray-800 border border-dimmed text-xs md:text-sm">
-            <div onClick={() => handleFilterClick('all')} className="w-full block cursor-pointer hover:bg-white dark:hover:bg-gray-900 dark:bg-gray-800 hover:text-link px-3 py-2 rounded-md">
-              Tất cả
-            </div>
             <div onClick={() => handleFilterClick('az')} className="w-full block cursor-pointer hover:bg-white dark:hover:bg-gray-900 dark:bg-gray-800 hover:text-link px-3 py-2 rounded-md">
               A-Z
             </div>

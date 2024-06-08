@@ -1,3 +1,5 @@
+
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import tw from "twin.macro";
 
@@ -52,7 +54,7 @@ const FilledButton = styled(BaseButton)`
 
 export function Button(props: IButtonProps) {
   const { theme, text, className, externalUrl } = props;
-
+  const navigate = useNavigate()
   const handleClick = () => {
     if (externalUrl) {
       if (externalUrl.startsWith("http") || externalUrl.startsWith("www")) {
@@ -60,7 +62,7 @@ export function Button(props: IButtonProps) {
         window.open(externalUrl, '_blank');
       } else {
         // Navigate to internal route
-        window.location.href = externalUrl;
+        navigate(externalUrl)
       }
     }
   };

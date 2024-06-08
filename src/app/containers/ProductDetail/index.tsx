@@ -43,6 +43,7 @@ export default function ProductDetail() {
     const [product, setProduct] = useState<IProduct>()
     const navigate = useNavigate();
     useEffect(() => {
+        window.scrollTo(0, 0); 
         const apiUrl = `https://vietafoodtrial.somee.com/api/product/${id}`;
         console.log(apiUrl);
         axios.get(apiUrl)

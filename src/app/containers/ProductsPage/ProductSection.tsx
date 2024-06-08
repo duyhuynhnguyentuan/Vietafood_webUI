@@ -8,6 +8,7 @@ import { IProduct } from "../../../../types/product";
 import { Reveal } from "../../components/animation/Reveal";
 import { CategoryFilter } from "../../components/categoryFilter/categoryFilter";
 import loading from "../../../assets/loading.json";
+import notFound from "../../../assets/notFound.json";
 import Lottie from "lottie-react";
 
 const ProductSectionContainer = styled.div`
@@ -37,12 +38,21 @@ const HeaderContainer = styled.section`
   `}
 `;
 
+const ErrorContainer = styled.div`
+  ${tw`flex flex-col justify-center items-center w-full h-full`}
+`;
+
+const ErrorMessage = styled.div`
+  ${tw`text-primary text-2xl md:text-4xl font-black mt-4`}
+`;
+
 export function ProductSection() {
   const location = useLocation();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [currentFilter, setCurrentFilter] = useState<string>("Tất cả");
-  // Function to parse query parameters
+
   const getQueryParams = () => {
     return new URLSearchParams(location.search);
   };
@@ -61,7 +71,7 @@ export function ProductSection() {
     }
     if (sortOption) {
       params.push(`SortOption=${encodeURIComponent(sortOption)}`);
-      setCurrentFilter("A-Z")
+      setCurrentFilter("A-Z");
     }
     if (isSortDesc !== null) {
       params.push(`isSortDesc=${encodeURIComponent(isSortDesc)}`);
@@ -93,10 +103,18 @@ export function ProductSection() {
             price: item.price,
           }));
           setProducts(fetchedProducts);
+          setErrorMessage(null); // Clear any previous error message
+        } else {
+          setErrorMessage(`Không tìm thấy kết quả cho "${productName}"`);
         }
       })
       .catch((error) => {
         console.error("Error fetching products:", error);
+        if (error.response && error.response.status === 404) {
+          setErrorMessage(`Không tìm thấy kết quả cho "${productName}"`);
+        } else {
+          setErrorMessage("Đã xảy ra lỗi khi tải sản phẩm.");
+        }
       })
       .finally(() => {
         setIsLoading(false);
@@ -109,10 +127,16 @@ export function ProductSection() {
         <Heading>SẢN PHẨM</Heading>
         <CategoryFilter currentFilter={currentFilter} />
       </HeaderContainer>
+
       {isLoading ? (
         <LoadingContainer>
           <Lottie animationData={loading} loop={true} />
         </LoadingContainer>
+      ) : errorMessage ? (
+        <ErrorContainer>
+          <Lottie animationData={notFound} loop={true} />
+          <ErrorMessage>{errorMessage}</ErrorMessage>
+        </ErrorContainer>
       ) : (
         <ProductCardContainer>
           {products.map((product) => (
