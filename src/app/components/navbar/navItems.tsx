@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import styled, { css } from "styled-components";
 import tw from "twin.macro";
 import { stack as Menu } from "react-burger-menu";
@@ -8,6 +7,7 @@ import menuStyles from "./menuStyle";
 import { CustomizedBadges } from "./cartButton";
 import { SearchBar } from "../searchBar";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const ListContainer = styled.ul`
   ${tw`
@@ -44,31 +44,35 @@ const NavItem = styled.li<{ menu?: any }>`
 
 export function NavItems() {
   const isMobile = useMediaQuery({ maxWidth: SCREENS.md });
-  const menuRef = useRef<any>(null);
+  const [isOpen, setOpen] = useState(false)
+  const handleIsOpen = () => {
+    setOpen(!isOpen)
+  }
 
-  const closeMenu = () => {
-    if (menuRef.current) {
-      menuRef.current.close();
-    }
-  };
-
+  const closeSideBar = () => {
+    setOpen(false)
+  }
   if (isMobile) {
     return (
-      <Menu right styles={menuStyles} ref={menuRef}>
+      <Menu right styles={menuStyles} 
+      isOpen={isOpen}
+      onOpen={handleIsOpen}
+      onClose={handleIsOpen}
+      >
         <NavItem menu>
-          <SearchBar closeMenu={closeMenu} />
+          <SearchBar closeMenu={closeSideBar} />
         </NavItem>
         <ListContainer>
-          <NavItem menu onClick={closeMenu}>
+          <NavItem menu onClick={closeSideBar}>
             <Link to="/">Trang chủ</Link>
           </NavItem>
-          <NavItem menu onClick={closeMenu}>
+          <NavItem menu onClick={closeSideBar}>
             <Link to="/aboutUs">Chúng tôi</Link>
           </NavItem>
-          <NavItem menu onClick={closeMenu}>
+          <NavItem menu onClick={closeSideBar}>
             <Link to="/products">Sản phẩm</Link>
           </NavItem>
-          <NavItem menu onClick={closeMenu}>
+          <NavItem menu onClick={closeSideBar}>
             <a href="https://vn.shp.ee/ChacKa9">Mua trên Shopee</a>
           </NavItem>
           <CustomizedBadges />
