@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import styled, { css } from "styled-components";
 import tw from "twin.macro";
 import { stack as Menu } from "react-burger-menu";
