@@ -10,7 +10,7 @@ import { Reveal } from "../../components/animation/Reveal";
 import Lottie from "lottie-react";
 import loading from "../../../assets/loading.json";
 const LoadingContainer = styled.div`
-  ${tw`flex justify-center items-center w-full h-full`}
+  ${tw`flex justify-center items-center mt-[100px] md:mt-0 w-full h-full`}
 `;
 const PageContainer = styled.div`
    ${tw`
