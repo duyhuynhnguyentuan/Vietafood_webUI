@@ -11,13 +11,15 @@ import { ProductsPage } from './app/containers/ProductsPage/index.tsx'
 import { injectSpeedInsights } from '@vercel/speed-insights';
 import { Provider } from 'react-redux'
 import { store } from './app/components/State/Store.tsx'
-
+import NotFoundPage from './app/components/error/index.tsx'
+import ProductDetail from './app/containers/ProductDetail/index.tsx'
 injectSpeedInsights();
 inject();
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App isshowBackground={false} content={<Homepage/>} />,
+    errorElement: <App isshowBackground={true} content={<NotFoundPage/>} />
   },
   {
     path: "/aboutUs",
@@ -25,8 +27,13 @@ const router = createBrowserRouter([
   },
   {
     path: "/products",
-    element: <App isshowBackground={true} content={<ProductsPage/>} />
+    element: <App isshowBackground={true} content={<ProductsPage/>} />,
   },
+  {
+    path: "/product/:id",
+    element: <App isshowBackground={true} content={<ProductDetail/>} />,
+  }
+  ,
 ],);
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

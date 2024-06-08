@@ -1,11 +1,13 @@
 import React from "react";
 import { IProduct } from "../../../../types/product";
+import { Link } from "react-router-dom";
 
 interface IProductProps extends IProduct {}
     
     
 const SingleProduct: React.FC<IProductProps> = (props) => {
         const {
+          productKey,
           name,
           price,
           imageUrl,
@@ -13,7 +15,7 @@ const SingleProduct: React.FC<IProductProps> = (props) => {
       
         return (
             <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-            <a href="#">
+            <Link to={`/product/${productKey}`}>
                 <img src={imageUrl}
                         alt="Product" className="h-80 w-72 object-cover rounded-t-xl" />
                 <div className="px-4 py-3 w-72">
@@ -33,7 +35,7 @@ const SingleProduct: React.FC<IProductProps> = (props) => {
                             </svg></div>
                     </div>
                 </div>
-            </a>
+            </Link>
         </div>
         );
       }

@@ -1,5 +1,6 @@
 import { IProduct } from "../../../../types/product";
 import React from 'react';
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
@@ -50,6 +51,7 @@ const FlexContainer = styled.div`
 
 const ProductCard: React.FC<IProductProps> = (props) => {
   const {
+    productKey,
     name,
     price,
     weight,
@@ -60,15 +62,21 @@ const ProductCard: React.FC<IProductProps> = (props) => {
   return (
     <Card isTopProduct={isTopProduct}>
       <ImageContainer>
+      <Link to={`/product/${productKey}`}>
         <Image src={imageUrl} alt={name} />
+      </Link>
         {isTopProduct && <SaleBadge>MỚI</SaleBadge>}
       </ImageContainer>
       <Content>
+      <Link to={`/product/${productKey}`}>
         <Title>{name}</Title>
+        </Link>
         <Description>{weight}</Description>
         <FlexContainer>
           <Price>₫{price}</Price>
+          <Link to={`/product/${productKey}`}>
           <BuyButton>Mua ngay</BuyButton>
+        </Link>
         </FlexContainer>
       </Content>
     </Card>
