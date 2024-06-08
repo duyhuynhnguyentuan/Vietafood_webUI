@@ -39,11 +39,11 @@ const HeaderContainer = styled.section`
 `;
 
 const ErrorContainer = styled.div`
-  ${tw`flex flex-col justify-center items-center w-full h-full`}
+  ${tw`flex flex-col justify-center items-center w-full h-full gap-y-4`}
 `;
 
 const ErrorMessage = styled.div`
-  ${tw`text-primary text-2xl md:text-4xl font-black mt-4`}
+  ${tw`text-primary text-2xl md:text-4xl font-black mt-8 md:mt-4`}
 `;
 
 export function ProductSection() {
