@@ -54,7 +54,7 @@ export function ProductSection() {
       .catch((error) => {
         console.error("Error fetching products:", error);
       });
-  });
+  }, []);
   const isEmptyTopProducts = !products || products.length === 0;
 
   let productsList: JSX.Element[] = [];

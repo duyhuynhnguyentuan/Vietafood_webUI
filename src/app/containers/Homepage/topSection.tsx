@@ -125,6 +125,7 @@ const LottieWrapper = styled.div`
 
 export function TopSection() {
   const [products, setProducts] = useState<IProduct[]>([]);
+  
   useEffect(() => {
     let apiUrl = "https://vietafoodtrial.somee.com/api/product?SortOption=price&isSortDesc=true";
     axios
@@ -143,24 +144,26 @@ export function TopSection() {
             status: item.status,
             price: item.price,
           }));
-          setProducts(fetchedProducts);
+          // Duplicate products if there are less than 10
+          const duplicatedProducts = [...fetchedProducts];
+          while (duplicatedProducts.length < 10) {
+            duplicatedProducts.push(...fetchedProducts);
+          }
+          setProducts(duplicatedProducts.slice(0, 10)); // Limit to 10 products
         }
       })
       .catch((error) => {
         console.error("Error fetching products:", error);
-      })
-    ;
-  });
+      });
+  }, []);
 
   const isEmptyTopProducts = !products || products.length === 0;
   let productSlides: JSX.Element[] = [];
-  productSlides = products.map((product) => (
-    <SwiperSlide>
+  productSlides = products.map((product, index) => (
+    <SwiperSlide >
       <ProductCard isTopProduct={true} {...product} />
     </SwiperSlide>
   ));
-
-  // Adjust size according to your heading
 
   return (
     <Container>
@@ -193,7 +196,7 @@ export function TopSection() {
           >
             {productSlides}
             <div className="slider-controler">
-              <div className=" swiper-button-prev slider-arrow">
+              <div className="swiper-button-prev slider-arrow">
                 <ArrowCircleLeftOutlinedIcon
                   className="ion-icon"
                   fontSize="large"
