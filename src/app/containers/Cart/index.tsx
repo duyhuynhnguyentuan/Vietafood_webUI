@@ -3,7 +3,9 @@ import { open } from '../../components/State/Slice/CheckOutSlice';
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from '../../store';
 import CheckOutItem from './CheckOutItem';
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import { clear } from '../../components/State/Slice/CartSlice';
+import { Link } from 'react-router-dom';
 const formatPrice = (price: number): string => {
   return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
 };
@@ -35,9 +37,18 @@ export function Cart() {
                   <CheckOutItem cartItem={cartItem} />
                 ))}
                 <div className="flex justify-between mt-12 text-white">
-                  <div className="font-bold text-lg">Tổng tiền:</div>
-                  <div className="font-bold text-lg">{formatPrice(total)}</div>
+                  <div className="font-bold text-lg">Tổng tiền: {formatPrice(total)}</div>
+                  <div className="font-bold text-lg">
+                    <div onClick={() => dispatch(clear())}>
+                  <DeleteIcon className="cursor-pointer"/>
+                    </div>
+                  </div>
                 </div>
+                <Link to="/checkout">
+                <div onClick={() => dispatch(open())} className="text-center bg-white text-primary p-3 mt-8 rounded-xl">
+                    Đến trang Thanh Toán
+                </div>
+                </Link>
               </>
             )}
           </div>

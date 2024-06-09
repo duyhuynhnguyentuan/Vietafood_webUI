@@ -13,6 +13,7 @@ import { Provider } from 'react-redux'
 import { store } from './app/components/State/Store.tsx'
 import NotFoundPage from './app/components/error/index.tsx'
 import ProductDetail from './app/containers/ProductDetail/index.tsx'
+import CheckOutPage from './app/containers/CheckOutpage/index.tsx'
 injectSpeedInsights();
 inject();
 const router = createBrowserRouter([
@@ -32,8 +33,11 @@ const router = createBrowserRouter([
   {
     path: "/product/:id",
     element: <App isshowBackground={true} content={<ProductDetail/>} />,
+  },
+  {
+    path:"/checkout",
+    element: <App isshowBackground={true} content={<CheckOutPage/>} />,
   }
-  ,
 ],);
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
