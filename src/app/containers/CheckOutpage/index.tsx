@@ -39,7 +39,7 @@ const CheckOutPage: React.FC = () => {
         citis.options[citis.options.length] = new Option(x.Name, x.Id);
       }
 
-      citis.onchange = function (this: GlobalEventHandlers, ev: Event) {
+      citis.onchange = function (this: GlobalEventHandlers) {
         const inputElement = this as HTMLInputElement;
         districts.length = 1;
         wards.length = 1;
