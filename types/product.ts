@@ -9,5 +9,6 @@ export interface IProduct {
     quantity?: number;
     status?: number;
     price?: number;
+    amount?: number;
   }
   

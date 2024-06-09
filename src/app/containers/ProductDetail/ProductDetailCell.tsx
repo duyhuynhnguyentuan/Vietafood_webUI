@@ -1,9 +1,10 @@
 import React from 'react';
 import { IProduct } from "../../../../types/product";
 import { add } from '../../components/State/Slice/CartSlice';
-import { useDispatch } from'react-redux';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 const getStatusInfo = (status?: number) => {
   switch (status) {
     case 1:
@@ -17,8 +18,12 @@ const getStatusInfo = (status?: number) => {
   }
 };
 
+const formatPrice = (price: number): string => {
+  return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+};
+
 const ProductDetailCell: React.FC<IProduct> = (props) => {
- const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const {
     productKey,
     name,
@@ -36,6 +41,7 @@ const ProductDetailCell: React.FC<IProduct> = (props) => {
     dispatch(add(props));
     toast.success("Đã thêm 1 sản phẩm vào giỏ!");
   };
+
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col md:flex-row -mx-4">
@@ -45,7 +51,9 @@ const ProductDetailCell: React.FC<IProduct> = (props) => {
           </div>
           <div className="flex -mx-2 mb-4">
             <div className="w-full px-2">
-              <button onClick={handleAddToCart} className="w-full bg-primary text-white py-2 px-4 rounded-full font-bold hover:bg-secondary text-lg">Thêm vào giỏ hàng</button>
+              <button onClick={handleAddToCart} className="w-full bg-primary text-white py-2 px-4 rounded-full font-bold hover:bg-secondary text-lg">
+                Thêm vào giỏ hàng
+              </button>
             </div>
           </div>
         </div>
@@ -55,7 +63,7 @@ const ProductDetailCell: React.FC<IProduct> = (props) => {
           <div className="flex mb-4">
             <div className="mr-4">
               <span className="font-bold text-gray-400">Giá: </span>
-              <span className="text-red-500 font-bold">₫{price}</span>
+              <span className="text-red-500 font-bold">{formatPrice(price!)}</span>
             </div>
             <div>
               <span className="font-bold text-gray-400">Tình trạng: </span>
@@ -71,11 +79,11 @@ const ProductDetailCell: React.FC<IProduct> = (props) => {
           <div className="mb-4">
             <span className="font-bold text-gray-400">Hạn sử dụng:</span>
             <p className="text-gray-700 text-base mt-2">
-             {expiryDay}
+              {expiryDay}
             </p>
           </div>
           <div>
-            <span className="font-bold text-gray-400">Hướng dụng sử dụng:</span>
+            <span className="font-bold text-gray-400">Hướng dẫn sử dụng:</span>
             <p className="text-gray-700 text-base mt-2">
               {guideToUsing}
             </p>

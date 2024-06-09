@@ -8,6 +8,10 @@ interface IProductProps extends IProduct {
   isTopProduct?: boolean;
 }
 
+const formatPrice = (price: number ): string => {
+  return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+};
+
 const Card = styled.div<{ isTopProduct: boolean }>`
   ${tw`bg-white rounded-[2rem] overflow-hidden shadow-lg max-w-sm ring-4 ring-opacity-60`}
   ${({ isTopProduct }) => isTopProduct ? tw`ring-secondary` : tw`ring-gray-100`}
@@ -62,21 +66,21 @@ const ProductCard: React.FC<IProductProps> = (props) => {
   return (
     <Card isTopProduct={isTopProduct}>
       <ImageContainer>
-      <Link to={`/product/${productKey}`}>
-        <Image src={imageUrl} alt={name} />
-      </Link>
+        <Link to={`/product/${productKey}`}>
+          <Image src={imageUrl} alt={name} />
+        </Link>
         {isTopProduct && <SaleBadge>MỚI</SaleBadge>}
       </ImageContainer>
       <Content>
-      <Link to={`/product/${productKey}`}>
-        <Title>{name}</Title>
+        <Link to={`/product/${productKey}`}>
+          <Title>{name}</Title>
         </Link>
         <Description>{weight}</Description>
         <FlexContainer>
-          <Price>₫{price}</Price>
+          <Price>{formatPrice(price!)}</Price>
           <Link to={`/product/${productKey}`}>
-          <BuyButton>Mua ngay</BuyButton>
-        </Link>
+            <BuyButton>Mua ngay</BuyButton>
+          </Link>
         </FlexContainer>
       </Content>
     </Card>
