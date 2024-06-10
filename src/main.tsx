@@ -14,6 +14,7 @@ import { store } from './app/components/State/Store.tsx'
 import NotFoundPage from './app/components/error/index.tsx'
 import ProductDetail from './app/containers/ProductDetail/index.tsx'
 import CheckOutPage from './app/containers/CheckOutpage/index.tsx'
+import OrderDetail from './app/containers/OrderDetailPage/index.tsx'
 injectSpeedInsights();
 inject();
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path:"/checkout",
     element: <App isshowBackground={true} content={<CheckOutPage/>} />,
+  },
+  {
+    path:"/orderDetail/:id",
+    element: <App isshowBackground={true} content={<OrderDetail/>} />,
   }
 ],);
 ReactDOM.createRoot(document.getElementById('root')!).render(

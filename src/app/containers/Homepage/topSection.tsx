@@ -11,7 +11,6 @@ import tw from "twin.macro";
 import { IProduct } from "../../../../types/product";
 import ProductCard from "../../components/productCard";
 import "./index.css";
-import Fire from "../../../assets/Fire.json";
 import Lottie from "lottie-react";
 import { Reveal } from "../../components/animation/Reveal";
 import loading from "../../../assets/loading.json";
@@ -169,9 +168,9 @@ export function TopSection() {
     <Container>
       <HeadingContainer>
         <Heading>Top sản phẩm bán chạy</Heading>
-        <LottieWrapper>
+        {/* <LottieWrapper>
           <Lottie animationData={Fire} loop={true} />
-        </LottieWrapper>
+        </LottieWrapper> */}
       </HeadingContainer>
       {!isEmptyTopProducts ? (
         <Reveal width="100%">

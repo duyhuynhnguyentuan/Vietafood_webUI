@@ -64,10 +64,10 @@ const slides = [
   },
   {
     imageUrl: fruit3,
-    text: "VietaFood ra đời vào năm 2023 với sứ mệnh tạo ra",
-    buttonText: "Về chúng tôi",
-    externalUrl: "/aboutUs",
-    text2: " những sản phẩm trái cây sấy dẻo tinh khiết!"
+    text: "Những sản phẩm tốt cho sức khỏe mới",
+    buttonText: "Đến trang mua hàng",
+    externalUrl: "/products",
+    text2: "đã có trên Vietafood!"
   },
 ];
 
