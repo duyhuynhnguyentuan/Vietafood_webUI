@@ -75,7 +75,9 @@ export function NavItems() {
           <NavItem menu onClick={closeSideBar}>
             <a href="https://vn.shp.ee/ChacKa9">Mua trên Shopee</a>
           </NavItem>
+          <NavItem menu onClick={closeSideBar}>
           <CustomizedBadges />
+          </NavItem>
         </ListContainer>
       </Menu>
     );

@@ -178,7 +178,7 @@ const OrderDetail = () => {
             </div>
           </div>) : (<div></div>) }
             <h1 className="text-lg lg:text-2xl font-medium leading-7 lg:leading-9 text-red-500">Trạng thái: {translateStatus(status)}</h1>
-            <p className="text-base font-medium leading-6 text-gray-600">{new Date(createdAt).toLocaleString()}</p>
+            <p className="text-base font-medium leading-6 text-gray-600">Ngày đặt hàng: {new Date(createdAt).toLocaleString()}</p>
           </div>
           <div className="mt-10 flex flex-col xl:flex-row jusitfy-center items-stretch w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
             <div className="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
