@@ -116,11 +116,6 @@ const StyledSwiper = styled(Swiper)`
   }
 `;
 
-const LottieWrapper = styled.div`
-  ${tw`flex items-center md:w-[2rem]`}
-  width: 1.5rem;
-  height: 1.5rem;
-`;
 
 export function TopSection() {
   const [products, setProducts] = useState<IProduct[]>([]);

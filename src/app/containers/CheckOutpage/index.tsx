@@ -30,7 +30,6 @@ interface Ward {
 }
 
 const CheckOutPage: React.FC = () => {
-  const [responseOrderId, setResponseOrderId] = useState<string>("")
   const [couponDescription, setCouponDescription] = useState<string>("");
   const [couponInput, setCouponInput] = useState<string>("");
   const [couponName, setCouponName] = useState<string>("");
@@ -185,7 +184,6 @@ const CheckOutPage: React.FC = () => {
           console.log("Order placed successfully:", response.data);
           toast.update(id, {render: "Đơn hàng được tạo thành công!", type: "success", isLoading: false});
           console.log(response.data.data.orderKey)
-          setResponseOrderId(response.data.data.orderKey)
           console.log(response.data)
           redirect(`/orderDetail/${response.data.data.orderKey}`)
           navigate(`/orderDetail/${response.data.data.orderKey}`)
