@@ -90,16 +90,12 @@ export function Footer() {
       <Right>
         <Title>Contact</Title>
         <ContactItem>
-          <Room style={{ marginRight: "10px" }} />
-          64/21 Xuân Diệu, Phường 4, Quận Tân Bình, Tp. HCM, Việt Nam
-        </ContactItem>
-        <ContactItem>
           <Phone style={{ marginRight: "10px" }} />
           <a href="tel:0858731831" style={{ textDecoration: 'underline' }}>0858 731 831</a>
         </ContactItem>
         <ContactItem>
           <MailOutline style={{ marginRight: "10px" }} />
-          <a href="mailto:andyhntd2003@gmail.com" style={{ textDecoration: 'underline' }}>andyhntd2003@gmail.com</a>
+          <a href="mailto:vietafood.shop@gmail.com" style={{ textDecoration: 'underline' }}>vietafood.shop@gmail.com</a>
         </ContactItem>
       </Right>
     </Container>
