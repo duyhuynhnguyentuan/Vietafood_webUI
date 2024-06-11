@@ -5,7 +5,7 @@ import axios from 'axios';
 import Checkbox from '@mui/material/Checkbox';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCoupon } from "../../components/State/Slice/CartSlice";
+import { addCoupon, clear } from "../../components/State/Slice/CartSlice";
 import { RootState } from '../../store';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -182,15 +182,15 @@ const CheckOutPage: React.FC = () => {
       axios.post('https://vietafoodtrial.somee.com/api/order', order)
         .then(response => {
           console.log("Order placed successfully:", response.data);
-          toast.update(id, {render: "Đơn hàng được tạo thành công!", type: "success", isLoading: false});
+          toast.update(id, {render: "Đơn hàng được tạo thành công!", type: "success", isLoading: false, autoClose: 4000});
           console.log(response.data.data.orderKey)
           console.log(response.data)
-          redirect(`/orderDetail/${response.data.data.orderKey}`)
           navigate(`/orderDetail/${response.data.data.orderKey}`)
+          dispatch(clear());
         })
         .catch(error => {
           console.error("Error placing order:", error);
-          toast.update(id, {render: "Đã xảy ra lỗi...", type: "error", isLoading: false });
+          toast.update(id, {render: "Đã xảy ra lỗi...", type: "error", isLoading: false, autoClose: 4000});
         });
     }
   };

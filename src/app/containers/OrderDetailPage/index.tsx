@@ -172,7 +172,7 @@ const OrderDetail = () => {
                 <WarningAmberIcon/>
                 {" "}Sau khi hoàn tất chuyển khoản, thư xác nhận thanh toán sẽ được gửi vào hòm thư của email đặt hàng. Trong trường hợp quá 3 tiếng mà chưa nhận được thư xác nhận, bạn vui lòng kiểm tra mục spam hoặc nhắn tin qua fanpage VietaFood tại{" "}
                 <a className="underline" href="https://www.facebook.com/VietaFood">https://www.facebook.com/VietaFood</a>
-                {" "}- hoặc gọi số hotline 0835488888 để được hỗ trợ.
+                {" "}- hoặc gọi số hotline 0835488888 để được hỗ trợ. MÃ QR này sẽ tự động biến mất khi đơn hàng đã được xác nhận. 
                 </p>
               </div>
             </div>
@@ -252,7 +252,6 @@ const OrderDetail = () => {
               <div className="flex flex-col md:flex-row xl:flex-col justify-start items-stretch h-full w-full md:space-x-6 lg:space-x-8 xl:space-x-0">
                 <div className="flex flex-col justify-start items-start flex-shrink-0">
                   <div className="flex justify-center w-full md:justify-start items-center space-x-4 py-8 border-b border-gray-200">
-                    <img src="/public/favicon.ico" alt="avatar" />
                     <div className="flex justify-start items-start flex-col space-y-2">
                       <p className="text-base font-semibold leading-4 text-left text-gray-800">{customerInfo.name}</p>
                     </div>
