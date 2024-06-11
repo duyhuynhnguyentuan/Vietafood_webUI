@@ -220,7 +220,7 @@ const CheckOutPage: React.FC = () => {
               <img src={cartItem.imageUrl} alt="San pham" className="md:hidden w-full h-full object-center object-cover" />
             </div>
             <div className="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
-              <p className="text-xs leading-3 text-gray-800 md:pt-0 pt-4">Vietafood</p>
+              <p className="text-xs leading-3 text-gray-800 md:pt-0 pt-4">VietaFood</p>
               <div className="flex items-center justify-between w-full">
                 <p className="text-base font-black leading-none text-gray-800">{cartItem.name}</p>
                 <div className="py-2 px-1 border border-primary mr-6 focus:outline-none">

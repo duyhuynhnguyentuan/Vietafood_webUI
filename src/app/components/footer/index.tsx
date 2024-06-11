@@ -72,7 +72,7 @@ export function Footer() {
       <Left>
         <Logo />
         <Desc>
-          Nơi mang đến sự tươi mới và dinh dưỡng cho bữa ăn hàng ngày của bạn! Chúng tôi tự hào giới thiệu về mình là đội ngũ chuyên gia hàng đầu trong lĩnh vực trái cây sấy dẻo, cam kết đem lại những sản phẩm chất lượng cao để nâng cao sức khỏe cho cộng đồng người Việt.
+        VietaFood mong muốn mang hình ảnh tươi đẹp của trái cây Việt Nam vươn ra thế giới. Chúng tôi tự hào khi được góp một phần quảng bá nông sản Việt, từ những trang trại xanh tươi đến bàn ăn ấm cúng của mọi gia đình, chia sẻ sự phong phú và tinh túy của nền nông nghiệp quê hương.
         </Desc>
         <SocialContainer>
           <a href="https://www.facebook.com/VietaFood" target="_blank" rel="noopener noreferrer">

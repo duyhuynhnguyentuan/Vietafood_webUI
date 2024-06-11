@@ -39,10 +39,13 @@ export function AboutPageTopSection() {
               <h2 className="text-3xl font-bold md:text-start text-center leading-tight text-black sm:text-4xl lg:text-5xl">
                 👋 Chào mừng bạn đến  
                 <br className="block sm:hidden" />
-                 <span className="text-primary">{" "}Vietafood!</span>
+                 <span className="text-primary">{" "}VietaFood!</span>
               </h2>
               <p className="max-w-lg mt-3 text-xl leading-relaxed text-gray-600 md:mt-8">
-              Nơi mang đến sự tươi mới và dinh dưỡng cho bữa ăn hàng ngày của bạn! Chúng tôi tự hào giới thiệu về mình là đội ngũ chuyên gia hàng đầu trong lĩnh vực trái cây sấy dẻo, cam kết đem lại những sản phẩm chất lượng cao để nâng cao sức khỏe cho cộng đồng người Việt.
+              Chúng tôi, VietaFood, cam kết mang đến cho người tiêu dùng trong và ngoài nước những sản phẩm trái cây sấy dẻo chất lượng cao, đậm đà hương vị thiên nhiên của Việt Nam. Với lòng nhiệt huyết và sự tận tâm của đội ngũ nhân viên, chúng tôi không ngừng nâng cao quy trình sản xuất và tiêu chuẩn chất lượng nhằm đảm bảo mỗi sản phẩm không chỉ giữ nguyên hương vị tự nhiên mà còn an toàn và bổ dưỡng.
+              </p>
+              <p className="max-w-lg mt-3 text-xl leading-relaxed text-gray-600 md:mt-8">
+              VietaFood mong muốn mang hình ảnh tươi đẹp của trái cây Việt Nam vươn ra thế giới. Chúng tôi tự hào khi được góp một phần quảng bá nông sản Việt, từ những trang trại xanh tươi đến bàn ăn ấm cúng của mọi gia đình, chia sẻ sự phong phú và tinh túy của nền nông nghiệp quê hương.
               </p>
               <p className="mt-4 text-xl text-gray-600 md:mt-8">
                 <span className="relative inline-block">

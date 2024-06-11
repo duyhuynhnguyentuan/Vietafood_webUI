@@ -50,14 +50,14 @@ const StyledSwiper = styled(Swiper)`
 const slides = [
   {
     imageUrl: fruit1,
-    text: "Các sản phẩm của Vietafood đã có mặt ",
+    text: "Các sản phẩm của VietaFood đã có mặt ",
     buttonText: "Đến trang của Shopee",
     externalUrl: 'https://vn.shp.ee/ChacKa9',
     text2: "trên nền tảng Shopee!"
   },
   {
     imageUrl: fruit2,
-    text: "Trái cây tốt cho sức khỏe giá tốt tại Vietafood!",
+    text: "Trái cây tốt cho sức khỏe giá tốt tại VietaFood!",
     buttonText: "Hãy mua ngay",
     externalUrl: '/products',
     text2: ''
@@ -67,7 +67,7 @@ const slides = [
     text: "Những sản phẩm tốt cho sức khỏe mới",
     buttonText: "Đến trang mua hàng",
     externalUrl: "/products",
-    text2: "đã có trên Vietafood!"
+    text2: "đã có trên VietaFood!"
   },
 ];
 
