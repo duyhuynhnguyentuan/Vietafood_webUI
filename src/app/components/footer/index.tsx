@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Logo } from "../logo";
 import tw from "twin.macro";
-import { Facebook, Instagram, MailOutline, Phone, Room } from "@mui/icons-material";
+import { Facebook, Instagram, MailOutline, Phone } from "@mui/icons-material";
 
 const Container = styled.div`
   display: flex;
