@@ -10,7 +10,7 @@ const resend = new Resend(process.env.VITE_APP_RESEND_API_KEY); // Ensure enviro
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-var cors = require('cors');
+
 var corsOptions = {
     origin: '*',
     optionsSuccessStatus: 200,
