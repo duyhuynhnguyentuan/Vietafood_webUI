@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-
 import {
   Box,
   Button,
@@ -202,7 +201,7 @@ const AdminOrderDetails: React.FC = () => {
 
   const sendEmail = async (order:Order) => {
     try {
-      const response = await fetch('/api/send-email', {
+      const response = await fetch('http://localhost:5000/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
