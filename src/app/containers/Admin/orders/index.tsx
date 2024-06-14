@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReactDOMServer from 'react-dom/server';
-import { Resend } from 'resend';
+// import { Resend } from 'resend';
 import {
   Box,
   Button,
