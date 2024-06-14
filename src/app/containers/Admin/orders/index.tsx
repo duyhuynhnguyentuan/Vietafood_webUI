@@ -203,13 +203,21 @@ const AdminOrderDetails: React.FC = () => {
   const sendEmail = async (order: Order) => {
     try {
       const emailContent = ReactDOMServer.renderToString(<Bill order={order} />);
-      
-      await resend.emails.send({
-        from: 'duyhuynh@vietafood.shop',
-        to: `${order.customerInfo.email}`,
-        subject: 'Xác nhận đơn hàng',
-        react: emailContent,
+  
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        mode: 'no-cors',
+        body: JSON.stringify({
+          from: 'duyhuynh@vietafood.shop',
+          to: order.customerInfo.email,
+          subject: 'Xác nhận đơn hàng',
+          react: emailContent,
+        }),
       });
+      console.log('Email sent, but cannot verify response due to no-cors mode');
     } catch (error) {
       console.error('Error sending email:', error);
     }
