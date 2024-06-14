@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Resend } from 'resend';
+// import { Resend } from 'resend';
 import ReactDOMServer from 'react-dom/server';
 
 import {
@@ -108,7 +108,7 @@ const AdminOrderDetails: React.FC = () => {
   const [selectedStatus, setSelectedStatus] = useState<string>("");
   const [openSendEmailModal, setOpenSendEmailModal] = useState(false);
   const navigate = useNavigate();
-  const resend = new Resend(import.meta.env.VITE_APP_RESEND_API_KEY);
+  // const resend = new Resend(import.meta.env.VITE_APP_RESEND_API_KEY);
  
   function getToken() {
     const user = JSON.parse(localStorage.getItem('user')!);
@@ -217,12 +217,15 @@ const AdminOrderDetails: React.FC = () => {
           react: emailContent,
         }),
       });
+  
+      // With 'no-cors' mode, you cannot access the response content or status
       console.log('Email sent, but cannot verify response due to no-cors mode');
     } catch (error) {
       console.error('Error sending email:', error);
     }
   };
   
+
 
   const handleSendEmail = async () => {
     if (selectedSendEmailOrder) {
