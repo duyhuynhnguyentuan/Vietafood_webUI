@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Resend } from 'resend';
-import ReactDOMServer from 'react-dom/server';
+
+
 
 import {
   Box,
@@ -14,7 +14,7 @@ import {
   FormControl,
   InputLabel,
 } from '@mui/material';
-import Bill from '../../../../email/Bill';
+
 
 const formatPrice = (price: number): string => {
   return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
@@ -108,7 +108,7 @@ const AdminOrderDetails: React.FC = () => {
   const [selectedStatus, setSelectedStatus] = useState<string>("");
   const [openSendEmailModal, setOpenSendEmailModal] = useState(false);
   const navigate = useNavigate();
-  const resend = new Resend(import.meta.env.VITE_APP_RESEND_API_KEY);
+
  
   function getToken() {
     const user = JSON.parse(localStorage.getItem('user')!);
@@ -200,21 +200,26 @@ const AdminOrderDetails: React.FC = () => {
     }
   };
 
-  const sendEmail = async (order: Order) => {
-  try {
-    const emailContent = ReactDOMServer.renderToString(<Bill order={order} />);
-    
-    await resend.emails.send({
-      from: 'duyhuynh@vietafood.shop',
-      to: `${order.customerInfo.email}`,
-      subject: 'Xác nhận đơn hàng',
-      react: emailContent,
-    });
-  } catch (error) {
-    console.error('Error sending email:', error);
-  }
-};
-
+  const sendEmail = async (order:Order) => {
+    try {
+      const response = await fetch('http://localhost:5000/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ order }),
+      });
+  
+      if (response.ok) {
+        console.log('Email sent successfully');
+      } else {
+        console.error('Failed to send email');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+    }
+  };
+  
 
   const handleSendEmail = async () => {
     if (selectedSendEmailOrder) {
