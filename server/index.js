@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import path from 'path';
-import Bill from '../email/Bill'; // Adjust the path as needed
+import Bill from './email/Bill'; // Adjust the path as needed
 import Resend from 'resend'; // Make sure this is the correct import for resend
 
 const resend = new Resend(process.env.VITE_APP_RESEND_API_KEY);
@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 
 // CORS configuration
 const corsOptions = {
-  origin: 'https://vietafood.shop',
+  origin: "*",
   optionsSuccessStatus: 200 // For legacy browser support
 };
 
