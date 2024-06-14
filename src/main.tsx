@@ -1,54 +1,50 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
-import GlobalStyles from './styles/GlobalStyle.tsx'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import App from './App.tsx';
+import './index.css';
+import GlobalStyles from './styles/GlobalStyle.tsx';
 import { inject } from '@vercel/analytics';
-import { createBrowserRouter,RouterProvider } from 'react-router-dom'
-import { Homepage } from './app/containers/Homepage/index.tsx'
-import { AboutUs } from './app/containers/Aboutpage/index.tsx'
-import { ProductsPage } from './app/containers/ProductsPage/index.tsx'
 import { injectSpeedInsights } from '@vercel/speed-insights';
-import { Provider } from 'react-redux'
-import { store } from './app/components/State/Store.tsx'
-import NotFoundPage from './app/components/error/index.tsx'
-import ProductDetail from './app/containers/ProductDetail/index.tsx'
-import CheckOutPage from './app/containers/CheckOutpage/index.tsx'
-import OrderDetail from './app/containers/OrderDetailPage/index.tsx'
+import { store } from './app/components/State/Store.tsx';
+import { Homepage } from './app/containers/Homepage/index.tsx';
+import { AboutUs } from './app/containers/Aboutpage/index.tsx';
+import { ProductsPage } from './app/containers/ProductsPage/index.tsx';
+import NotFoundPage from './app/components/error/index.tsx';
+import ProductDetail from './app/containers/ProductDetail/index.tsx';
+import CheckOutPage from './app/containers/CheckOutpage/index.tsx';
+import OrderDetail from './app/containers/OrderDetailPage/index.tsx';
+import Login from './app/containers/Admin/loginPage/index.tsx';
+import Dashboard from './app/containers/Admin/dashBoard/index.tsx';
+import AdminOrderDetails from './app/containers/Admin/orders/index.tsx';
+import AdminProductDetails from './app/containers/Admin/products/index.tsx';
+import AdminCouponDetails from './app/containers/Admin/coupon/index.tsx';
+
 injectSpeedInsights();
 inject();
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App isshowBackground={false} content={<Homepage/>} />,
-    errorElement: <App isshowBackground={true} content={<NotFoundPage/>} />
-  },
-  {
-    path: "/aboutUs",
-    element: <App isshowBackground={true} content={<AboutUs/>} />,
-  },
-  {
-    path: "/products",
-    element: <App isshowBackground={true} content={<ProductsPage/>} />,
-  },
-  {
-    path: "/product/:id",
-    element: <App isshowBackground={true} content={<ProductDetail/>} />,
-  },
-  {
-    path:"/checkout",
-    element: <App isshowBackground={true} content={<CheckOutPage/>} />,
-  },
-  {
-    path:"/orderDetail/:id",
-    element: <App isshowBackground={true} content={<OrderDetail/>} />,
-  }
-],);
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
-    <RouterProvider router={router}/>
-    <GlobalStyles/>
+      <BrowserRouter>
+        <GlobalStyles />
+        <Routes>
+          <Route path="/" element={<App isshowBackground={false} content={<Homepage />} />} />
+          <Route path="/aboutUs" element={<App isshowBackground={true} content={<AboutUs />} />} />
+          <Route path="/products" element={<App isshowBackground={true} content={<ProductsPage />} />} />
+          <Route path="/product/:id" element={<App isshowBackground={true} content={<ProductDetail />} />} />
+          <Route path="/checkout" element={<App isshowBackground={true} content={<CheckOutPage />} />} />
+          <Route path="/orderDetail/:id" element={<App isshowBackground={true} content={<OrderDetail />} />} />
+          <Route path="/admin/login" element={<Login />} />
+          <Route path="/admin/dashboard" element={<Dashboard />}>
+            <Route path="orders" element={<AdminOrderDetails />} />
+            <Route path="products" element={<AdminProductDetails />} />
+            <Route path="coupons" element={<AdminCouponDetails />} />
+          </Route>
+          <Route path="*" element={<App isshowBackground={true} content={<NotFoundPage />} />} />
+        </Routes>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
-)
+);

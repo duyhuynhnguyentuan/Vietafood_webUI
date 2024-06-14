@@ -157,7 +157,7 @@ const OrderDetail = () => {
                 </p>
                 </div>
                 <div className="flex justify-center">
-                <img className="w-full md:max-w-screen-md" src={`https://api.vietqr.io/image/970422-0835488888-2fl0HC9.jpg?accountName=HUYNH%20NGUYEN%20TUAN%20DUY&amount=${totalPrice}&addInfo=${order.customerInfo.phone} ${order.orderKey}`} />
+                <img className="w-full md:max-w-screen-md" src={`https://api.vietqr.io/image/970422-0835488888-2fl0HC9.jpg?accountName=HUYNH%20NGUYEN%20TUAN%20DUY&amount=${totalPrice}&addInfo=${order.customerInfo.phone} ${order.customerInfo.name}`} />
                 </div>
                 <p className="text-start" >
                 Chủ tài khoản: Huỳnh Nguyễn Tuấn Duy - STK: 0835488888
@@ -166,7 +166,7 @@ const OrderDetail = () => {
                 Ngân hàng MB, Chi nhánh Bình Phước
                 </p>
                 <p className="text-start" >
-                Mục nội dung gửi: {order.customerInfo.phone} {order.orderKey}
+                Mục nội dung gửi: {order.customerInfo.phone} {order.customerInfo.name}
                 </p>
                 <p className="text-start p-2 text-md bg-gray-300" >
                 <WarningAmberIcon/>

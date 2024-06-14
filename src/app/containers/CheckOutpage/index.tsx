@@ -103,6 +103,7 @@ const CheckOutPage: React.FC = () => {
   const applyCoupon = () => {
     const couponCode = couponInput;
     setCouponDescription("Đang tìm mã giảm giá...");
+    if(couponInput.length > 0) {
     axios.get(`https://vietafoodtrial.somee.com/api/coupon/${couponCode}`)
       .then(response => {
         if (response.data.success) {
@@ -119,6 +120,9 @@ const CheckOutPage: React.FC = () => {
         setCouponDescription("Không tìm thấy coupon!");
         dispatch(addCoupon(0));
       });
+    }else{
+      setCouponDescription("Chưa nhập coupon!");
+    }
   };
 
   const validateForm = (): boolean => {
