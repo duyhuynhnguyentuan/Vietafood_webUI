@@ -207,7 +207,8 @@ const AdminOrderDetails: React.FC = () => {
       await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_APP_RESEND_API_KEY}`
         },
         mode: 'no-cors',
         body: JSON.stringify({
