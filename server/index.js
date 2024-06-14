@@ -10,7 +10,12 @@ const resend = new Resend(process.env.VITE_APP_RESEND_API_KEY); // Ensure enviro
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+var cors = require('cors');
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200,
+  }
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 app.post('/send-email', async (req, res) => {
