@@ -142,7 +142,7 @@ const OrderDetail = () => {
       <OrderDetailContainer>
         <div className="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
           <div className="flex justify-start item-start space-y-2 flex-col">
-            <h1 className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-primary">Đơn hàng #{order.orderKey}</h1>
+            <h1 className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-primary">Đơn hàng #{order.orderKey.slice(-6)}</h1>
             {status === "Unpaid" ? (
             <div>
             <div className="block p-3 border border-primary text-gray-600 w-full text-sm ">
@@ -157,7 +157,7 @@ const OrderDetail = () => {
                 </p>
                 </div>
                 <div className="flex justify-center">
-                <img className="w-full md:max-w-screen-md" src={`https://api.vietqr.io/image/970422-0835488888-2fl0HC9.jpg?accountName=HUYNH%20NGUYEN%20TUAN%20DUY&amount=${totalPrice}&addInfo=${order.customerInfo.phone} ${order.customerInfo.name}`} />
+                <img className="w-full md:max-w-screen-md" src={`https://api.vietqr.io/image/970422-0835488888-2fl0HC9.jpg?accountName=HUYNH%20NGUYEN%20TUAN%20DUY&amount=${totalPrice}&addInfo=${order.customerInfo.phone} ${order.orderKey.slice(-6)}`} />
                 </div>
                 <p className="text-start" >
                 Chủ tài khoản: Huỳnh Nguyễn Tuấn Duy - STK: 0835488888
@@ -166,7 +166,7 @@ const OrderDetail = () => {
                 Ngân hàng MB, Chi nhánh Bình Phước
                 </p>
                 <p className="text-start" >
-                Mục nội dung gửi: {order.customerInfo.phone} {order.customerInfo.name}
+                Mục nội dung gửi: {order.customerInfo.phone} {order.orderKey.slice(-6)}
                 </p>
                 <p className="text-start p-2 text-md bg-gray-300" >
                 <WarningAmberIcon/>

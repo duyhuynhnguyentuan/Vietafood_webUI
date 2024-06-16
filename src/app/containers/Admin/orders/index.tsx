@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ReactDOMServer from 'react-dom/server';
-// import { Resend } from 'resend';
+
 import {
   Box,
   Button,
@@ -13,7 +12,7 @@ import {
   FormControl,
   InputLabel,
 } from '@mui/material';
-import Bill from '../../../../email/Bill';
+
 
 
 const formatPrice = (price: number): string => {
@@ -202,23 +201,12 @@ const AdminOrderDetails: React.FC = () => {
 
   const sendEmail = async (order: Order) => {
     try {
-      const emailContent = ReactDOMServer.renderToString(<Bill order={order} />);
-  
-      const response = await axios.post('/api/emails', {
-        from: 'duyhuynh@vietafood.shop',
-        to: order.customerInfo.email,
-        subject: 'Xác nhận đơn hàng',
-        react: emailContent,
-      }, {
-        headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_APP_RESEND_API_KEY}`,
-          'Content-Type': 'application/json'
-        }
-      });
-  
+      const response = await axios.post('http://localhost:3000/api/send-email', { order });
       console.log('Email sent successfully:', response.data);
+      alert('Gửi mail ok!')
     } catch (error) {
       console.error('Error sending email:', error);
+      alert('Gửi mail thất bại!')
     }
   };
   
@@ -251,11 +239,17 @@ const AdminOrderDetails: React.FC = () => {
           ));
 
           // Send confirmation email
-          await sendEmail(orderToUpdate);
+          const truncatedOrder = {
+            ...orderToUpdate,
+            status: translateStatus("Paid")
+          };
+  
+          // Send confirmation email with the modified order
+          await sendEmail(truncatedOrder);
 
           handleCloseSendEmail();
         } catch (error) {
-          console.error('Error updating order status and sending email:', error);
+          console.error('Error updating order status or sending email:', error);
         }
       }
     }
