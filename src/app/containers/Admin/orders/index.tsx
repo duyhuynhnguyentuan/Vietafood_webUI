@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Lottie from "lottie-react";
+import loading from "../../../../assets/loading.json";
 import {
   Box,
   Button,
@@ -100,6 +101,7 @@ type ApiResponse = {
 
 const AdminOrderDetails: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
+  const [isLoading, setIsLoading] = useState(false)
   const [selectedOrder, setSelectedOrder] = useState<string | null>(null);
   const [selectedSendEmailOrder, setSelectedSendEmailOrder] = useState<Order | null>(null);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -107,8 +109,7 @@ const AdminOrderDetails: React.FC = () => {
   const [selectedStatus, setSelectedStatus] = useState<string>("");
   const [openSendEmailModal, setOpenSendEmailModal] = useState(false);
   const navigate = useNavigate();
-  // const resend = new Resend(import.meta.env.VITE_APP_RESEND_API_KEY);
- 
+
   function getToken() {
     const user = JSON.parse(localStorage.getItem('user')!);
     if (user && user.token) {
@@ -121,6 +122,7 @@ const AdminOrderDetails: React.FC = () => {
 
   useEffect(() => {
     const fetchOrders = async () => {
+      setIsLoading(true);
       try {
         const response = await axios.get<ApiResponse>(
           'https://vietafoodtrial.somee.com/api/order',
@@ -134,8 +136,8 @@ const AdminOrderDetails: React.FC = () => {
         const sortedOrders = response.data.data.items.sort((a, b) => {
           return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
         });
-
         setOrders(sortedOrders);
+        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching orders:', error);
       }
@@ -288,6 +290,8 @@ const AdminOrderDetails: React.FC = () => {
 
   return (
     <>
+    {isLoading ? 
+      (   <Lottie animationData={loading} loop={true} />) : (
       <table className="min-w-full divide-y divide-gray-200 overflow-x-auto">
         <thead className="bg-gray-50">
           <tr>
@@ -368,7 +372,8 @@ const AdminOrderDetails: React.FC = () => {
           ))}
         </tbody>
       </table>
-
+    )
+  }
       <Modal
         open={openSendEmailModal}
         onClose={handleCloseSendEmail}

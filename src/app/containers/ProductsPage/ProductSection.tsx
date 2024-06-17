@@ -7,8 +7,8 @@ import SingleProduct from "./SingleProduct";
 import { IProduct } from "../../../../types/product";
 import { Reveal } from "../../components/animation/Reveal";
 import { CategoryFilter } from "../../components/categoryFilter/categoryFilter";
-import loading from "../../../assets/loading.json";
 import notFound from "../../../assets/notFound.json";
+import loading from "../../../assets/loading.json";
 import Lottie from "lottie-react";
 
 const ProductSectionContainer = styled.div`

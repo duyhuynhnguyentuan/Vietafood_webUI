@@ -2,13 +2,15 @@ import {useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import logoImg from "../../../../assets/logo.png"
-
+import loading from "../../../../assets/loading.json";
+import Lottie from "lottie-react";
 const Login = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const handleLogin = async () => {
-    alert("Đợi chút... Bấm ok đi")
+    setIsLoading(true);
     try {
       const response = await axios.post('https://vietafoodtrial.somee.com/api/auth/login', {
         email,
@@ -25,7 +27,7 @@ const Login = () => {
           token: token,
           expiration: expirationTime,
         }));
-
+        setIsLoading(false);
         navigate('/admin/dashboard');
       } else {
         alert("Đăng nhập thất bại");
@@ -46,6 +48,9 @@ const Login = () => {
             Đăng nhập
            </span>
             </h1>
+            {isLoading ? (
+                <Lottie animationData={loading} loop={true} />
+            ) : (
           <form>
             <div className="mb-4">
               <label className="block font-semibold text-gray-700 mb-2" htmlFor="email">
@@ -88,6 +93,7 @@ const Login = () => {
               </button>
             </div>
           </form>
+        )}
         </div>
       </div>
     </div>

@@ -27,6 +27,7 @@
     "@vercel/speed-insights": "^1.0.11",
     "@vitejs/plugin-react": "^4.2.1",
     "axios": "^1.7.2",
+    "firebase": "^10.12.2",
     "framer-motion": "^11.2.6",
     "ionicons": "^7.4.0",
     "lottie-react": "^2.4.0",
