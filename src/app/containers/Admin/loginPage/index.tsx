@@ -33,6 +33,7 @@ const Login = () => {
         alert("Đăng nhập thất bại");
       }
     } catch (error) {
+      setIsLoading(false);
       console.error('There was an error!', error);
       alert('Login failed!');
     }
