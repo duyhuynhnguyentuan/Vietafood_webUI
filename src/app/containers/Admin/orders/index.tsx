@@ -13,7 +13,8 @@ import {
   FormControl,
   InputLabel,
 } from '@mui/material';
-
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { storage } from "./firebase-config";
 
 
 const formatPrice = (price: number): string => {
@@ -45,7 +46,7 @@ const statusMapping: { [key: string]: number } = {
 type CustomerInfo = {
   customerInfoKey: string;
   name: string;
-  email: string;
+  email?: string;
   address: string;
   phone: string;
 };
@@ -88,6 +89,7 @@ type Order = {
   couponInfo: CouponInfo;
   createdAt: string;
   totalPrice: number;
+  imgUrl?: string;
   status: string;
 };
 
@@ -108,6 +110,9 @@ const AdminOrderDetails: React.FC = () => {
   const [openStatusModal, setOpenStatusModal] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState<string>("");
   const [openSendEmailModal, setOpenSendEmailModal] = useState(false);
+  const [imageUpload, setImageUpload] = useState<File | null>(null);
+  const [openUploadImageModal, setOpenUploadImageModal] = useState(false); // New state for upload image modal
+  const [uploadedFileName, setUploadedFileName] = useState<string | null>(null); // New state for uploaded file name
   const navigate = useNavigate();
 
   function getToken() {
@@ -118,7 +123,23 @@ const AdminOrderDetails: React.FC = () => {
       navigate("/admin/login");
     }
   }
+  function getEmail() {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    if (user && user.email) {
+        return user.email;
+    } else {
+        navigate("/admin/login");
+    }
+  }
+  const uploadFile = async (): Promise<string> => {
+    if (!imageUpload) return Promise.reject('No image file selected');
+    const imageRef = ref(storage, `/ck/${imageUpload.name}`);
+    await uploadBytes(imageRef, imageUpload);
+    return getDownloadURL(imageRef);
+  };
+
   const token = getToken();
+  const email = getEmail();
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -183,7 +204,52 @@ const AdminOrderDetails: React.FC = () => {
     setSelectedOrder(null);
     setOpenStatusModal(false);
   };
+  const handleOpenUploadImage = (orderKey: string) => {
+    setSelectedOrder(orderKey);
+    setOpenUploadImageModal(true);
+  };
 
+  const handleCloseUploadImage = () => {
+    setSelectedOrder(null);
+    setOpenUploadImageModal(false);
+    setUploadedFileName(null); // Clear the uploaded file name state when closing the modal
+  };
+
+  const handleUploadImage = async () => {
+    if (selectedOrder) {
+      try {
+        const fileUrl = await uploadFile();
+        const orderToUpdate = orders.find(order => order.orderKey === selectedOrder);
+        if (orderToUpdate) {
+          const requestData = {
+            customerInfoKey: orderToUpdate.customerInfo.customerInfoKey,
+            status: 2,
+            imgUrl: fileUrl // Update the order with the uploaded image URL
+          };
+
+          await axios.put(
+            `https://vietafoodtrial.somee.com/api/order/${selectedOrder}`,
+            requestData,
+            {
+              headers: {
+                'accept': '*/*',
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+              }
+            }
+          );
+
+          setOrders(orders.map(order =>
+            order.orderKey === selectedOrder ? { ...order, imageUrl: fileUrl } : order
+          ));
+
+          handleCloseUploadImage();
+        }
+      } catch (error) {
+        console.error('Error uploading image or updating order:', error);
+      }
+    }
+  };
   const handleDelete = async () => {
     if (selectedOrder) {
       try {
@@ -213,9 +279,17 @@ const AdminOrderDetails: React.FC = () => {
   };
   
   const handleSendEmail = async () => {
+    if(email !== "duyhnt@vietafood.shop"){
+      alert('Bạn không có quyền sử dụng chức năng này!');
+      return;
+    }
     if (selectedSendEmailOrder) {
       const orderToUpdate = orders.find(order => order === selectedSendEmailOrder);
       if (orderToUpdate) {
+        if(!orderToUpdate.customerInfo.email){
+          alert('Không tìm thấy email của khách hàng! Không sử dụng chức năng này');
+          return;
+        }
         try {
           const requestData = {
             customerInfoKey: orderToUpdate.customerInfo.customerInfoKey,
@@ -321,8 +395,11 @@ const AdminOrderDetails: React.FC = () => {
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="flex items-center">
                   <div className="ml-4">
+                    <div className="text-md font-semibold text-primary">#{order.orderKey.slice(-6)}</div>
                     <div className="text-sm font-medium text-gray-900">{order.customerInfo.name}</div>
-                    <div className="text-sm text-gray-700">{order.customerInfo.email}</div>
+                    {!order.customerInfo.email ?
+                    <div className="text-sm text-red-700">KHÔNG CÓ MAIL</div> :
+                    <div className="text-sm text-gray-700">{order.customerInfo.email}</div>}
                     <div className="text-sm text-gray-500">{order.customerInfo.phone}</div>
                     <div className="text-sm text-gray-500">{order.customerInfo.address}</div>
                   </div>
@@ -336,11 +413,16 @@ const AdminOrderDetails: React.FC = () => {
                 ))}
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                <div className="flex flex-col">
+                <span className={`px-2 text-center text-xs leading-8 font-semibold rounded-full ${
                   order.status !== 'Unpaid' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
                 }`}>
                   {translateStatus(order.status)}
                 </span>
+                {!order.imgUrl ? "" :  
+                <a href={order.imgUrl} className="text-sm underline text-center text-gray-500">Ảnh chuyển khoản</a>
+              }
+              </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 {formatPrice(order.totalPrice)}
@@ -354,6 +436,10 @@ const AdminOrderDetails: React.FC = () => {
                   onClick={() => handleOpenSendEmail(order)}
                 >
                   Xác nhận đã thanh toán và gửi mail
+                </button>
+                <button
+                className="bg-teal-400 p-2 ml-2 text-white rounded-md" onClick={() => handleOpenUploadImage(order.orderKey)}>
+                  Cập nhật ảnh chuyển khoản
                 </button>
                 <button
                   className="bg-orange-300 p-2 ml-2 text-white rounded-md"
@@ -486,6 +572,27 @@ const AdminOrderDetails: React.FC = () => {
               Cập nhật
             </Button>
           </Box>
+        </Box>
+      </Modal>
+      <Modal open={openUploadImageModal} onClose={handleCloseUploadImage}>
+        <Box p={4} borderRadius="8px" bgcolor="white" boxShadow={3}>
+          <Typography variant="h6">Upload Image</Typography>
+          <input
+            type="file"
+            onChange={(event) => {
+              if (event.target.files) {
+                setImageUpload(event.target.files[0]);
+                setUploadedFileName(event.target.files[0].name); // Set the uploaded file name
+              }
+            }}
+          />
+          {uploadedFileName && <Typography>Uploaded File: {uploadedFileName}</Typography>} {/* Display the uploaded file name */}
+          <Button variant="contained" color="primary" onClick={handleUploadImage}>
+            Upload
+          </Button>
+          <Button variant="contained" color="secondary" onClick={handleCloseUploadImage}>
+            Cancel
+          </Button>
         </Box>
       </Modal>
     </>

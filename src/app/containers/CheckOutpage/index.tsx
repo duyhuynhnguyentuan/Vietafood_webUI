@@ -127,11 +127,11 @@ const CheckOutPage: React.FC = () => {
 
   const validateForm = (): boolean => {
     const newErrors: { [key: string]: string } = {};
-    if (!email) {
-      newErrors.email = "Email không được để trống";
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
+    if(email){
+    if (!/\S+@\S+\.\S+/.test(email)) {
       newErrors.email = "Email không hợp lệ";
     }
+  }
 
     if (!name) {
       newErrors.name = "Tên không được để trống";
@@ -259,7 +259,8 @@ const CheckOutPage: React.FC = () => {
           </div>
           <div className="flex flex-col space-y-4 mt-4 mb-5">
             <span className="">
-              <h1 className="text-sm font-extralight">Email</h1>
+              <h1 className="text-sm font-extralight">Email (Không bắt buộc)</h1>
+              <h1 className="text-xs font-extralight text-gray-400">*Email của bạn sẽ được sử dụng để nhận thông tin và theo dõi đơn hàng</h1>
               <input
                 type="email"
                 placeholder="Nhập email tại đây"

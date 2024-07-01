@@ -149,7 +149,7 @@ const OrderDetail = () => {
   return (
     <PageContainer>
       <OrderDetailContainer>
-        <div className="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+        <div className="py-10 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
           <div className="flex justify-start item-start space-y-2 flex-col">
             <h1 className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-primary">
               Đơn hàng #{order.orderKey.slice(-6)}
@@ -164,22 +164,22 @@ const OrderDetail = () => {
                     <div className="flex flex-row justify-center items-center">
                       <Checkbox defaultChecked disabled />
                       <p className="text-center font-semibold">
-                        Chuyển khoản qua ngân hàng MB
+                        Chuyển khoản qua ngân hàng TPBank
                       </p>
                     </div>
                     <div className="flex justify-center">
                       <img
-                        className="w-full md:max-w-screen-md"
+                        className=" md:max-w-screen-sm"
                         src={`https://api.vietqr.io/image/970423-08587318317-rBYR3rz.jpg?accountName=HUYNH%20PHAM%20HOANG%20PHUONG&amount=${totalPrice}&addInfo=VTF ${order.orderKey.slice(-6)}`
                       
                       }
                       />
                     </div>
                     <p className="text-start">
-                      Chủ tài khoản: Huỳnh Nguyễn Tuấn Duy - STK: 0835488888
+                      Chủ tài khoản: Huỳnh Phạm Hoàng Phương - STK: 08587318317
                     </p>
                     <p className="text-start">
-                      Ngân hàng MB, Chi nhánh Bình Phước
+                      Ngân hàng TPBank, Chi nhánh TPHCM
                     </p>
                     <p className="text-start">
                       Mục nội dung gửi: VTF{" "}
@@ -197,7 +197,7 @@ const OrderDetail = () => {
                       >
                         https://www.facebook.com/VietaFood
                       </a>{" "}
-                      - hoặc gọi số hotline 0835488888 để được hỗ trợ. MÃ QR này
+                      - hoặc gọi số hotline 0858 731 831 để được hỗ trợ. MÃ QR này
                       sẽ tự động biến mất khi đơn hàng đã được xác nhận.
                     </p>
                   </div>
