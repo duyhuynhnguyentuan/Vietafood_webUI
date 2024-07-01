@@ -170,9 +170,9 @@ const OrderDetail = () => {
                     <div className="flex justify-center">
                       <img
                         className="w-full md:max-w-screen-md"
-                        src={`https://api.vietqr.io/image/970422-0835488888-2fl0HC9.jpg?accountName=HUYNH%20NGUYEN%20TUAN%20DUY&amount=${totalPrice}&addInfo=${
-                          order.customerInfo.phone
-                        } ${order.orderKey.slice(-6)}`}
+                        src={`https://api.vietqr.io/image/970423-08587318317-rBYR3rz.jpg?accountName=HUYNH%20PHAM%20HOANG%20PHUONG&amount=${totalPrice}&addInfo=VTF ${order.orderKey.slice(-6)}`
+                      
+                      }
                       />
                     </div>
                     <p className="text-start">
@@ -182,7 +182,7 @@ const OrderDetail = () => {
                       Ngân hàng MB, Chi nhánh Bình Phước
                     </p>
                     <p className="text-start">
-                      Mục nội dung gửi: {order.customerInfo.phone}{" "}
+                      Mục nội dung gửi: VTF{" "}
                       {order.orderKey.slice(-6)}
                     </p>
                     <p className="text-start p-2 text-md bg-gray-300">
