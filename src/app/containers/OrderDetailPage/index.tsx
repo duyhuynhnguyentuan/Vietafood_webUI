@@ -311,7 +311,7 @@ const OrderDetail = () => {
                         Giao hàng
                       </p>
                       <p className="text-base leading-4 text-gray-600">
-                        {formatPrice(30000)}
+                        (tùy vị trí)
                       </p>
                     </div>
                   </div>
@@ -348,7 +348,7 @@ const OrderDetail = () => {
                       </div>
                     </div>
                     <p className="text-lg font-semibold leading-6 text-gray-800">
-                      {formatPrice(30000)}
+                      LAHAMOVE
                     </p>
                   </div>
                 </div>
