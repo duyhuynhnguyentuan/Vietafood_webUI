@@ -15,7 +15,8 @@ import mitsay from '../../../assets/MITSAY.mp4';
 import thomsay from '../../../assets/THOMSAY.mp4';
 import xoaisay from '../../../assets/XOAISAY.mp4';
 import vobuoisay from '../../../assets/VOBUOISAY.mp4';
-const getVideo = (name: String) => {
+
+const getVideo = (name: string) => {
   switch (name) {
     case "MÍT SẤY DẺO":
       return mitsay;
@@ -53,65 +54,77 @@ const ProductDetailContainer = styled.div`
   `}
 `;
 
-
 export default function ProductDetail() {
-    
-    const { id } = useParams<{ id: string }>(); 
-    const [product, setProduct] = useState<IProduct>()
-    const navigate = useNavigate();
-    useEffect(() => {
-        window.scrollTo(0, 0); 
-        const apiUrl = `https://vietafoodtrial.somee.com/api/product/${id}`;
-        console.log(apiUrl);
-        axios.get(apiUrl)
-          .then(response => {
-            const item = response.data.data; 
-            if (item) {
-              const fetchedProduct: IProduct = {
-                productKey: item.productKey,
-                name: item.name,
-                description: item.description,
-                guideToUsing: item.guildToUsing,
-                weight: item.weight,
-                expiryDay: item.expiryDay,
-                imageUrl: item.imageUrl,
-                quantity: item.quantity,
-                status: item.status,
-                price: item.price,
-              };
-              setProduct(fetchedProduct);
-            }
-          })
-          .catch(error => {
-            console.error("Error fetching product:", error);
-            const id = toast.error("Không thể tìm thấy sản phẩm, đang quay về trang chủ...");
-            setTimeout(() => {
-                navigate("/")
-                toast.update(id, {render: "Đã quay về Trang chủ", type: "success", isLoading: false});
-            }, 3000); //
-          });
-      }, []);
-      const isEmptyProduct = !product
-      return(
-         <PageContainer>
-            <ProductDetailContainer>
-                {isEmptyProduct? (
-                   <LoadingContainer>
-                   <Lottie animationData={loading} loop={true} />
-                 </LoadingContainer> 
-                ) :
-                (           
-                <Reveal width="100%">
-                <div>
-                 <video className="w-full md:h-[32vw] h-[56.25vw] object-cover brightness-[70%] transition duration-500" autoPlay muted loop playsInline src={getVideo(product.name!)!}></video>
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const { id } = useParams<{ id: string }>(); 
+  const [product, setProduct] = useState<IProduct>();
+  const navigate = useNavigate();
+  const handleVideoLoaded = () => {
+    setIsVideoLoaded(true);
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0); 
+    const apiUrl = `https://vietafoodtrial.somee.com/api/product/${id}`;
+    console.log(apiUrl);
+    axios.get(apiUrl)
+      .then(response => {
+        const item = response.data.data; 
+        if (item) {
+          const fetchedProduct: IProduct = {
+            productKey: item.productKey,
+            name: item.name,
+            description: item.description,
+            guideToUsing: item.guildToUsing,
+            weight: item.weight,
+            expiryDay: item.expiryDay,
+            imageUrl: item.imageUrl,
+            quantity: item.quantity,
+            status: item.status,
+            price: item.price,
+          };
+          setProduct(fetchedProduct);
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching product:", error);
+        const id = toast.error("Không thể tìm thấy sản phẩm, đang quay về trang chủ...");
+        setTimeout(() => {
+          navigate("/");
+          toast.update(id, { render: "Đã quay về Trang chủ", type: "success", isLoading: false });
+        }, 3000); 
+      });
+  }, [id, navigate]);
+
+  const isEmptyProduct = !product;
+
+  return (
+    <PageContainer>
+      <ProductDetailContainer>
+        {isEmptyProduct && !isVideoLoaded ? (
+          <LoadingContainer>
+            <Lottie animationData={loading} loop={true} />
+          </LoadingContainer>
+        ) : (
+          product && (
+            <Reveal width="100%">
+              <div>
+                <video
+                  className="w-full md:h-[32vw] h-[56.25vw] object-cover brightness-[70%] transition duration-500"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  src={getVideo(product.name!) || ""}
+                  onLoadedData={handleVideoLoaded}
+                ></video>
                 <ProductDetailCell {...product} />
-                </div>
-                </Reveal>
-            )
-                }
-                <Marginer margin="5em" direction="vertical"/>
-             
-            </ProductDetailContainer>
-         </PageContainer>
-      )
+              </div>
+            </Reveal>
+          )
+        )}
+        <Marginer margin="5em" direction="vertical" />
+      </ProductDetailContainer>
+    </PageContainer>
+  );
 }
