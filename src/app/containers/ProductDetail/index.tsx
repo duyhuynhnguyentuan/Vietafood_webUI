@@ -11,6 +11,24 @@ import Lottie from "lottie-react";
 import loading from "../../../assets/loading.json";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import mitsay from '../../../assets/MITSAY.mp4';
+import thomsay from '../../../assets/THOMSAY.mp4';
+import xoaisay from '../../../assets/XOAISAY.mp4';
+import vobuoisay from '../../../assets/VOBUOISAY.mp4';
+const getVideo = (name: String) => {
+  switch (name) {
+    case "MÍT SẤY DẺO":
+      return mitsay;
+    case "THƠM SẤY DẺO":
+      return thomsay;
+    case "XOÀI SẤY DẺO":
+      return xoaisay;
+    case "VỎ BƯỞI SẤY DẺO":
+      return vobuoisay;
+    default:
+      return null;
+  }
+}
 
 const LoadingContainer = styled.div`
   ${tw`flex justify-center items-center mt-[100px] md:mt-0 w-full h-full`}
@@ -21,14 +39,13 @@ const PageContainer = styled.div`
     flex-col
     w-full
     h-full
-    mt-[68px]
     items-center
    `}
 `;
 
 const ProductDetailContainer = styled.div`
   ${tw`
-    mt-[68px]
+  
     w-full 
     max-w-screen-2xl
     flex 
@@ -85,7 +102,10 @@ export default function ProductDetail() {
                 ) :
                 (           
                 <Reveal width="100%">
+                <div>
+                 <video className="w-full md:h-[32vw] h-[56.25vw] object-cover brightness-[70%] transition duration-500" autoPlay muted loop playsInline src={getVideo(product.name!)!}></video>
                 <ProductDetailCell {...product} />
+                </div>
                 </Reveal>
             )
                 }

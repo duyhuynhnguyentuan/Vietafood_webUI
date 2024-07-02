@@ -43,7 +43,8 @@ const ProductDetailCell: React.FC<IProduct> = (props) => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-6xl mx-auto mt-12 md:mt-14 px-4 sm:px-6 lg:px-8">
+
       <div className="flex flex-col md:flex-row -mx-4">
         <div className="md:flex-1 px-4">
           <div className="h-[460px] rounded-lg mb-4">

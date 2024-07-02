@@ -6,6 +6,7 @@ import { NavItems } from "./navItems";
 import { SearchBar } from "../searchBar";
 import { useMediaQuery } from "react-responsive";
 import { SCREENS } from "../responsive";
+import { Link } from "react-router-dom";
 
 interface INavBarProps {
   isshowBackground?: boolean;
@@ -78,11 +79,13 @@ export const Navbar: React.FC<INavBarProps> = ({ isshowBackground = true }) => {
 
   return (
     <NavbarContainer showBackground={showBackground}>
+       <Link to="/">
       <LogoContainer>
         <Image>
           <img src={logoImg} alt="logo" />
         </Image>
       </LogoContainer>
+       </Link>
       {!isMobile ? <SearchBar /> : null}
       <NavItems />
     </NavbarContainer>

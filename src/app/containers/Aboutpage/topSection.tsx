@@ -5,6 +5,8 @@ import hello from '../../../assets/hello.json';
 import { Reveal } from "../../components/animation/Reveal";
 const TopSectionContainer = styled.div`
   ${tw`
+    mt-0
+    md:mt-8
     px-7
     w-full 
     max-w-screen-2xl

@@ -33,7 +33,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path="/" element={<App isshowBackground={false} content={<Homepage />} />} />
           <Route path="/aboutUs" element={<App isshowBackground={true} content={<AboutUs />} />} />
           <Route path="/products" element={<App isshowBackground={true} content={<ProductsPage />} />} />
-          <Route path="/product/:id" element={<App isshowBackground={true} content={<ProductDetail />} />} />
+          <Route path="/product/:id" element={<App isshowBackground={false} content={<ProductDetail />} />} />
           <Route path="/checkout" element={<App isshowBackground={true} content={<CheckOutPage />} />} />
           <Route path="/orderDetail/:id" element={<App isshowBackground={true} content={<OrderDetail />} />} />
           <Route path="/admin/login" element={<Login />} />
