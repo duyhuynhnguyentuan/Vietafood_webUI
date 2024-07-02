@@ -5,7 +5,7 @@ import axios from 'axios';
 import Checkbox from '@mui/material/Checkbox';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCoupon, clear } from "../../components/State/Slice/CartSlice";
+import { addCoupon, clear, setShippingFee } from "../../components/State/Slice/CartSlice";
 import { RootState } from '../../store';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -43,7 +43,8 @@ const CheckOutPage: React.FC = () => {
   const navigate = useNavigate()
   const [errors, setErrors] = useState<{[key: string]: string}>({});
   const dispatch = useDispatch();
-  const { amount, cartItems, total, finalTotal } = useSelector((state: RootState) => state.cart);
+  const { amount, cartItems, total, finalTotal, shippingFee} = useSelector((state: RootState) => state.cart);
+  console.log(city)
   useEffect(() => {
     const citis = document.getElementById("city") as HTMLSelectElement;
     const districts = document.getElementById("district") as HTMLSelectElement;
@@ -85,6 +86,13 @@ const CheckOutPage: React.FC = () => {
       };
     }
   }, []);
+  useEffect(() => {
+    if (city == "79") {
+      dispatch(setShippingFee(0));
+    } else {
+      dispatch(setShippingFee(30000));
+    }
+  }, [city, dispatch]);
 
   const getAddress = (): string => {
     const city = document.getElementById("city") as HTMLSelectElement;
@@ -341,7 +349,7 @@ const CheckOutPage: React.FC = () => {
               Vận chuyển
             </label>
             <select className="block p-2 border border-primary text-gray-600 w-full text-sm">
-              <option>Giao hàng tận nơi - chuyển phát thương mại điện tử - 30.000đ</option>
+              <option>Giao hàng tận nơi - chuyển phát thương mại điện tử - {shippingFee}đ</option>
             </select>
           </div>
           <div className="my-10 p-4 border border-tertiary">

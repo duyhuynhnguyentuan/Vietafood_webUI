@@ -102,9 +102,13 @@ const CartSlice = createSlice({
       } else {
         state.finalTotal = state.total + state.shippingFee;
       }
+    },
+    setShippingFee: (state, action) => {
+      state.shippingFee = action.payload;
+      state.finalTotal = (state.total + state.shippingFee) * (1 - state.couponDiscount / 100);
     }
   },
 });
 
-export const { add, increase, decrease, remove, total, clear, addCoupon, finalTotal } = CartSlice.actions;
+export const { add, increase, decrease, remove, total, clear, addCoupon, finalTotal, setShippingFee } = CartSlice.actions;
 export default CartSlice.reducer;
