@@ -15,6 +15,7 @@ import {
 } from '@mui/material';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "./firebase-config";
+import AdminOrderSummary from './summary';
 
 
 const formatPrice = (price: number): string => {
@@ -113,8 +114,9 @@ const AdminOrderDetails: React.FC = () => {
   const [imageUpload, setImageUpload] = useState<File | null>(null);
   const [openUploadImageModal, setOpenUploadImageModal] = useState(false); // New state for upload image modal
   const [uploadedFileName, setUploadedFileName] = useState<string | null>(null); // New state for uploaded file name
+  const [totalOrderPrice, setTotalOrderPrice] = useState<number>(0); // New state for total order price
   const navigate = useNavigate();
-
+  
   function getToken() {
     const user = JSON.parse(localStorage.getItem('user')!);
     if (user && user.token) {
@@ -167,6 +169,11 @@ const AdminOrderDetails: React.FC = () => {
     fetchOrders();
   }, [token, navigate]);
 
+  useEffect(() => {
+    const total = orders.reduce((acc, order) => acc + order.totalPrice, 0);
+    setTotalOrderPrice(total);
+  }, [orders]);
+  
   // Axios interceptor to handle 401 errors
   axios.interceptors.response.use(
     response => response,
@@ -366,6 +373,8 @@ const AdminOrderDetails: React.FC = () => {
     <>
     {isLoading ? 
       (   <Lottie animationData={loading} loop={true} />) : (
+      <div>
+      <AdminOrderSummary revenue={totalOrderPrice} totalOrders={orders.length}/>
       <table className="min-w-full divide-y divide-gray-200 overflow-x-auto">
         <thead className="bg-gray-50">
           <tr>
@@ -458,6 +467,7 @@ const AdminOrderDetails: React.FC = () => {
           ))}
         </tbody>
       </table>
+      </div>
     )
   }
       <Modal
