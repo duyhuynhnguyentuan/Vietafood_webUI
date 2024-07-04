@@ -96,7 +96,7 @@ import {
               src="https://vietafood.shop/assets/logo-lPjZkMnY.png"
               width="66"
               height="60"
-              alt="Nike"
+              alt="Vietafood logo"
               style={{ margin: "auto" }}
             />
             <Heading style={global.heading}>Đơn hàng đã được thanh toán</Heading>
