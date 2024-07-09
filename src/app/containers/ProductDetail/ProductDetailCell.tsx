@@ -10,7 +10,7 @@ const getStatusInfo = (status?: number) => {
     case 1:
       return { text: "Còn hàng", className: "text-green-500" };
     case 2:
-      return { text: "Ko còn sử dụng, đã xóa", className: "text-gray-400" };
+      return { text: "Không còn sử dụng, đã xóa", className: "text-gray-400" };
     case 3:
       return { text: "Hết hàng", className: "text-red-500" };
     default:
@@ -52,9 +52,14 @@ const ProductDetailCell: React.FC<IProduct> = (props) => {
           </div>
           <div className="flex -mx-2 mb-4">
             <div className="w-full px-2">
+              {status === 1 ? (
               <button onClick={handleAddToCart} className="w-full bg-primary text-white py-2 px-4 rounded-full font-bold hover:bg-secondary text-lg">
                 Thêm vào giỏ hàng
+              </button> ) : (
+                <button className="w-full bg-gray-300 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-400 text-lg">
+                Không thể thêm vào giỏ hàng
               </button>
+              )}
             </div>
           </div>
         </div>

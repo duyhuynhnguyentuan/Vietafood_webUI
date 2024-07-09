@@ -304,7 +304,7 @@ const CheckOutPage: React.FC = () => {
               <h1 className="text-sm font-extralight">Địa chỉ</h1>
               <input
                 type="text"
-                placeholder="Nhập địa chỉ chi tiết tại đây"
+                placeholder="Nhập địa chỉ chi tiết tại đây (số nhà, đường,...)"
                 id="address"
                 className="p-2 text-sm w-full border border-primary"
                 value={address}
